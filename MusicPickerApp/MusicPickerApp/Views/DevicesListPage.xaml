@@ -29,7 +29,6 @@
                   DetailColor="#B2B2B2"
                   BindingContext="{StaticResource viewModel}"
                   Command="{Binding SelectDeviceCommand}"
-                  Height="50"
       />
       </DataTemplate>
     </ListView.ItemTemplate>

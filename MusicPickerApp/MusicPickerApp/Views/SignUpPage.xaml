@@ -2,12 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MusicPickerApp;assembly=MusicPickerApp"
+             xmlns:viewModels="clr-namespace:MusicPickerApp.ViewModels;assembly=MusicPickerApp"
              xmlns:toolkit="clr-namespace:MusicPickerApp.Toolkit;assembly=MusicPickerApp"
              x:Class="MusicPickerApp.Views.SignUpPage"
              Style="{StaticResource defaultStyle}"
              Title="{StaticResource AppName}">
   <ContentPage.Resources>
     <ResourceDictionary>
+      <viewModels:AddDeviceViewModel x:Key="viewModel"/>
       <Style x:Key="loginStyle" TargetType="StackLayout">
         <Setter Property="Padding">
           <Setter.Value>
@@ -20,7 +22,8 @@
       </Style>
     </ResourceDictionary>
   </ContentPage.Resources>
-  <StackLayout Style="{StaticResource loginStyle}">
+  <StackLayout Style="{StaticResource loginStyle}"
+               BindingContext="{StaticResource viewModel}">
     <Image Source= "{toolkit:ImageResource MusicPickerApp.Images.Logo.png}"
             HorizontalOptions="Center">
       <Image.WidthRequest>
@@ -30,15 +33,15 @@
                     WinPhone="360" />
       </Image.WidthRequest>
     </Image>
-    <Entry x:Name="nameEntry" Placeholder="Name" Keyboard="Default" />
-    <Entry x:Name="pwdEntry" Placeholder="Password" Keyboard="Default" IsPassword="True" />
-    <Entry x:Name="cpwdEntry" Placeholder="Confirm Password" Keyboard="Default" IsPassword="True" />
+    <Entry x:Name="nameEntry" Placeholder="Name" Keyboard="Default" Text="{Binding Name}"/>
+    <Entry x:Name="pwdEntry" Placeholder="Password" Keyboard="Default" IsPassword="True" Text="{Binding Password}" />
+    <Entry x:Name="cpwdEntry" Placeholder="Confirm Password" Keyboard="Default" IsPassword="True" Text="{Binding CPassword}" />
     <Button x:Name="signUpButton"
             Text="Sign up"
             VerticalOptions="Center"
             HorizontalOptions="Fill"
             Style="{StaticResource defaultButtonStyle}"
-            Command="{Binding SignUpCommand}"/>
+            Command="{Binding RegisterCommand}"/>
   </StackLayout>
 
 </ContentPage>

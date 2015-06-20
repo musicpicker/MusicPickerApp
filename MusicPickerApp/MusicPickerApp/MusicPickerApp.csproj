@@ -42,6 +42,7 @@
     <Compile Include="Toolkit\ImageResourceExtension.cs" />
     <Compile Include="Toolkit\ObjectToListConverter.cs" />
     <Compile Include="ViewModels\DevicesListViewModel.cs" />
+    <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\AddDeviceViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

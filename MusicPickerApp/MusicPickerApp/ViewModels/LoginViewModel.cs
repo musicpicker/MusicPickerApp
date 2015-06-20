@@ -36,15 +36,21 @@ namespace MusicPickerApp.ViewModels {
                 
                 }*/
                 // Name = Password = ""
-                List<DeviceView> Devices = new List<DeviceView>();
-                Devices.Add(new DeviceView("Device 1",true));
-                Devices.Add(new DeviceView("Device 2", false));
-                Devices.Add(new DeviceView("Device 3", false));
-                Devices.Add(new DeviceView("Device 4", true));
-                Devices.Add(new DeviceView("Device 5", false));
-                Devices.Add(new DeviceView("Device 6", false));
+                if (name == "toto" && password == "toto") {
+                    List<DeviceView> Devices = new List<DeviceView>();
+                    Devices.Add(new DeviceView("Device 1", true));
+                    Devices.Add(new DeviceView("Device 2", false));
+                    Devices.Add(new DeviceView("Device 3", false));
+                    Devices.Add(new DeviceView("Device 4", true));
+                    Devices.Add(new DeviceView("Device 5", false));
+                    Devices.Add(new DeviceView("Device 6", false));
 
-                App.Navigation.PushAsync(new DevicesListPage(Devices));
+                    App.Navigation.PushAsync(new DevicesListPage(Devices));
+                } else {
+                    App.Current.MainPage.DisplayAlert("Error", "Your login is incorrect or does not exit", "Ok");
+                    
+                }
+                Name = Password = "";
                 
             });
 
