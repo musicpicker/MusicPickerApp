@@ -13,8 +13,10 @@ namespace MusicPickerApp
         {
             // The root page of your application
             InitializeComponent();
-            MainPage = new NavigationPage(new LoginPage());
-            App.Navigation = MainPage.Navigation;
+            var rootPage = new NavigationPage(new LoginPage());
+            rootPage.BarBackgroundColor = Color.FromHex("#0000FF");
+            MainPage = rootPage;
+            App.Navigation = rootPage.Navigation;
             
         }
         public static INavigation Navigation {

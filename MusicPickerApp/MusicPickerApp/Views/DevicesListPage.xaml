@@ -5,37 +5,32 @@
              xmlns:views="clr-namespace:MusicPickerApp.Views;assembly=MusicPickerApp"
              xmlns:viewModels="clr-namespace:MusicPickerApp.ViewModels;assembly=MusicPickerApp"
              xmlns:toolkit="clr-namespace:MusicPickerApp.Toolkit;assembly=MusicPickerApp"
-             x:Class="MusicPickerApp.Views.DevicesPage"
+             x:Class="MusicPickerApp.Views.DevicesListPage"
              Title="Devices"
              Style="{StaticResource defaultStyle}">
   <ContentPage.Resources>
     <ResourceDictionary>
-      <viewModels:LoginViewModel x:Key="viewModel"/>
-      <Style x:Key="DevicePageStyle" TargetType="StackLayout">
-        <Setter Property="Padding">
-          <Setter.Value>
-            <OnPlatform x:TypeArguments="Thickness"
-                        iOS="20, 40, 20, 20"
-                        Android="20"
-                        WinPhone="20" />
-          </Setter.Value>
-        </Setter>
-      </Style>
+      <viewModels:DevicesListViewModel x:Key="viewModel"/>
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.ToolbarItems BackgroundColor="#387C13">
-    <ToolbarItem Text="New Device" Order="Primary">
+    <ToolbarItem Text="New Device" Order="Primary" BindingContext="{StaticResource viewModel}"
+                 Command="{Binding AddDevicePageCommand}">
     </ToolbarItem>
   </ContentPage.ToolbarItems>
   <ListView x:Name="DevicesList"
-            ItemsSource="{x:Static views:DevicesPage.DevicesView}"
+            ItemsSource="{x:Static views:DevicesListPage.DevicesView}"
             BackgroundColor="#2D2D2D">
 
     <ListView.ItemTemplate>
       <DataTemplate>
         <TextCell Text="{Binding DeviceName}" Detail="{Binding IsOwner, StringFormat='Owner : {0}'}"
                   TextColor="White"
-                  DetailColor="#B2B2B2"/>
+                  DetailColor="#B2B2B2"
+                  BindingContext="{StaticResource viewModel}"
+                  Command="{Binding SelectDeviceCommand}"
+                  Height="50"
+      />
       </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>

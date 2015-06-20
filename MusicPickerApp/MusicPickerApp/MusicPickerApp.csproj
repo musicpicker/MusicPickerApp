@@ -41,9 +41,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Toolkit\ImageResourceExtension.cs" />
     <Compile Include="Toolkit\ObjectToListConverter.cs" />
+    <Compile Include="ViewModels\DevicesListViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\AddDeviceViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="Views\DevicesPage.xaml.cs">
-      <DependentUpon>DevicesPage.xaml</DependentUpon>
+    <Compile Include="Views\AddDevicePage.xaml.cs">
+      <DependentUpon>AddDevicePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DevicesListPage.xaml.cs">
+      <DependentUpon>DevicesListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DeviceView.cs" />
     <Compile Include="Views\LoginPage.xaml.cs">
@@ -97,7 +103,13 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\DevicesPage.xaml">
+    <EmbeddedResource Include="Views\DevicesListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AddDevicePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -7,17 +7,16 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.Views {
-    public partial class DevicesPage : ContentPage {
+    public partial class DevicesListPage : ContentPage {
 
         public static List<DeviceView> DevicesView {
             get;
             set;
         }
-        public DevicesPage(List<DeviceView> Devices) {
+        public DevicesListPage(List<DeviceView> Devices) {
 
             //Devices.Sort<>()...
             DevicesView = Devices;
-
             InitializeComponent();
             
             

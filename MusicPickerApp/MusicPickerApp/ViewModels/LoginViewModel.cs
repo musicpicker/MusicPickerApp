@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.FormsBook.Toolkit;
 
 namespace MusicPickerApp.ViewModels {
     public class LoginViewModel : ViewModelBase {
@@ -44,8 +43,9 @@ namespace MusicPickerApp.ViewModels {
                 Devices.Add(new DeviceView("Device 4", true));
                 Devices.Add(new DeviceView("Device 5", false));
                 Devices.Add(new DeviceView("Device 6", false));
-                Devices.Add(new DeviceView("Device 7", false));
-                App.Navigation.PushAsync(new DevicesPage(Devices));
+
+                App.Navigation.PushAsync(new DevicesListPage(Devices));
+                
             });
 
         }
