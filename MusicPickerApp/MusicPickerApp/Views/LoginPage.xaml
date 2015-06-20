@@ -5,7 +5,8 @@
              xmlns:viewModels="clr-namespace:MusicPickerApp.ViewModels;assembly=MusicPickerApp"
              xmlns:toolkit="clr-namespace:MusicPickerApp.Toolkit;assembly=MusicPickerApp"
              x:Class="MusicPickerApp.Views.LoginPage"
-             Style="{StaticResource defaultStyle}">
+             Style="{StaticResource defaultStyle}"
+             Title="{StaticResource AppName}">
   <ContentPage.Resources>
     <ResourceDictionary>
       <viewModels:LoginViewModel x:Key="viewModel"/>
@@ -48,10 +49,10 @@
               TextColor="White"/>
     </StackLayout>
     <StackLayout x:Name="entryForm" >
-      <Entry x:Name="nameEntry" Placeholder="Name" Keyboard="Default" Text="{Binding Name}"/>
+      <Entry x:Name="nameEntry" Placeholder="Username" Keyboard="Default" Text="{Binding Name}"/>
       <Entry x:Name="pwdEntry" Placeholder="Password" Keyboard="Default" IsPassword="True" Text="{Binding Password}"/>
       <Button x:Name="loginButton"
-              Text="Login"
+              Text="Sign In"
               VerticalOptions="Center"
               HorizontalOptions="Fill"
               Style="{StaticResource defaultButtonStyle}"

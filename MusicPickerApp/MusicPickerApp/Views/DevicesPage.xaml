@@ -23,16 +23,19 @@
       </Style>
     </ResourceDictionary>
   </ContentPage.Resources>
-  <ContentPage.ToolbarItems>
+  <ContentPage.ToolbarItems BackgroundColor="#387C13">
     <ToolbarItem Text="New Device" Order="Primary">
     </ToolbarItem>
   </ContentPage.ToolbarItems>
   <ListView x:Name="DevicesList"
-            ItemsSource="{x:Static views:DevicesPage.DevicesView}">
+            ItemsSource="{x:Static views:DevicesPage.DevicesView}"
+            BackgroundColor="White">
+
     <ListView.ItemTemplate>
       <DataTemplate>
         <TextCell Text="{Binding DeviceName}" Detail="{Binding IsOwner, StringFormat='Owner : {0}'}"
-                  DetailColor="White"/>
+                  TextColor="Black"
+                  DetailColor="#B2B2B2"/>
       </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>

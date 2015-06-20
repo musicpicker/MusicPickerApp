@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:MusicPickerApp;assembly=MusicPickerApp"
              xmlns:toolkit="clr-namespace:MusicPickerApp.Toolkit;assembly=MusicPickerApp"
              x:Class="MusicPickerApp.Views.SignUpPage"
-             Style="{StaticResource defaultStyle}">
+             Style="{StaticResource defaultStyle}"
+             Title="{StaticResource AppName}">
   <ContentPage.Resources>
     <ResourceDictionary>
       <Style x:Key="loginStyle" TargetType="StackLayout">
