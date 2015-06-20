@@ -29,12 +29,12 @@
   </ContentPage.ToolbarItems>
   <ListView x:Name="DevicesList"
             ItemsSource="{x:Static views:DevicesPage.DevicesView}"
-            BackgroundColor="White">
+            BackgroundColor="#2D2D2D">
 
     <ListView.ItemTemplate>
       <DataTemplate>
         <TextCell Text="{Binding DeviceName}" Detail="{Binding IsOwner, StringFormat='Owner : {0}'}"
-                  TextColor="Black"
+                  TextColor="White"
                   DetailColor="#B2B2B2"/>
       </DataTemplate>
     </ListView.ItemTemplate>
