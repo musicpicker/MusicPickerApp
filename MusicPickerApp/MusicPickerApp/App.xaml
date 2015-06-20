@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicPickerApp.App">
+  <Application.Resources>
+    <ResourceDictionary>
+      <Style x:Key="defaultStyle" TargetType="VisualElement">
+        <Setter Property="BackgroundColor" Value="#387C13" />
+      </Style>
+      <Style x:Key="defaultPadding" TargetType="ContentPage">
+        <Setter Property="Padding">
+          <Setter.Value>
+            <OnPlatform x:TypeArguments="Thickness"
+                        iOS="0, 20, 0, 0"
+                        Android="0"
+                        WinPhone="0" />
+          </Setter.Value>
+        </Setter>
+      </Style>
+      <Style x:Key="defaultButtonStyle" TargetType="Button">
+        <Setter Property="BorderWidth" Value="3" />
+        <Setter Property="TextColor" Value="#387C13" />
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="BorderColor" Value="#387C13"/>
+      </Style>
+      <x:String x:Key="AppName">Music Picker</x:String>
+    </ResourceDictionary>
+  </Application.Resources>
+  
+</Application>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MusicPickerApp;assembly=MusicPickerApp"
+             xmlns:views="clr-namespace:MusicPickerApp.Views;assembly=MusicPickerApp"
+             xmlns:viewModels="clr-namespace:MusicPickerApp.ViewModels;assembly=MusicPickerApp"
+             xmlns:toolkit="clr-namespace:MusicPickerApp.Toolkit;assembly=MusicPickerApp"
+             x:Class="MusicPickerApp.Views.DevicesPage"
+             Title="Devices"
+             Style="{StaticResource defaultStyle}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <viewModels:LoginViewModel x:Key="viewModel"/>
+      <Style x:Key="DevicePageStyle" TargetType="StackLayout">
+        <Setter Property="Padding">
+          <Setter.Value>
+            <OnPlatform x:TypeArguments="Thickness"
+                        iOS="20, 40, 20, 20"
+                        Android="20"
+                        WinPhone="20" />
+          </Setter.Value>
+        </Setter>
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="New Device" Order="Primary">
+    </ToolbarItem>
+  </ContentPage.ToolbarItems>
+  <ListView x:Name="DevicesList"
+            ItemsSource="{x:Static views:DevicesPage.DevicesView}">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <TextCell Text="{Binding DeviceName}" Detail="{Binding IsOwner, StringFormat='Owner : {0}'}"
+                  DetailColor="White"/>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+
+</ContentPage>
