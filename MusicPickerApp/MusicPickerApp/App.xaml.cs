@@ -14,7 +14,8 @@ namespace MusicPickerApp
             // The root page of your application
             InitializeComponent();
             var rootPage = new NavigationPage(new LoginPage());
-            rootPage.BarBackgroundColor = Color.FromHex("#0000FF");
+            //ToolBar For Android
+            rootPage.BarBackgroundColor = Color.FromHex("#387C13");
             MainPage = rootPage;
             App.Navigation = rootPage.Navigation;
             
