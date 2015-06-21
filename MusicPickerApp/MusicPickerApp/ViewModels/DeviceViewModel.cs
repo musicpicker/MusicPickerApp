@@ -16,14 +16,14 @@ namespace MusicPickerApp.ViewModels {
         public List<Artist> ArtistsList { get; set; }
         public List<Album> AlbumsList { get; set; }
         public List<Track> TracksList { get; set; }
+
+        
         public DeviceViewModel() {
-            client.LogIn("Tom", "isen59");
-            List<Api.Util.Device> devices = client.DevicesGet();
-            Device = devices[0];
+            Device = client.CurrentDevice;
             AlbumsList = client.DeviceGetAlbums(Device.Id);
             ArtistsList = client.DeviceGetArtists(Device.Id);
             TracksList = client.DeviceGetTracks(Device.Id);
-
+            
             DisplayPollPageCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new PollPage());
             });

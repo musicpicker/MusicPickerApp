@@ -17,7 +17,7 @@ namespace MusicPickerApp.ViewModels {
                 App.Navigation.PushAsync(new AddDevicePage());
             });
             SelectDeviceCommand = new Command<int>(execute: (int deviceId) => {
-
+                client.CurrentDevice = DeviceList[deviceId-1];
                 App.Navigation.PushAsync(new DevicePage());
 
             });

@@ -12,7 +12,7 @@
              Style="{StaticResource defaultStyle}">
   <TabbedPage.Resources>
     <ResourceDictionary>
-      <viewModels:DeviceViewModel x:Key="viewModel"/>
+      <viewModels:DeviceViewModel x:Key="viewModel" x:Name="viewModel"/>
     </ResourceDictionary>
   </TabbedPage.Resources>
   <TabbedPage.ToolbarItems>

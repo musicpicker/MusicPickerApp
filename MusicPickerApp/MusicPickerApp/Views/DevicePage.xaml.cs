@@ -10,7 +10,8 @@ namespace MusicPickerApp.Views {
     public partial class DevicePage : TabbedPage {
         public DevicePage() {
             InitializeComponent();
-            this.BindingContext = new DeviceViewModel();
+            this.BindingContext = viewModel;
+            
         }
     }
 }

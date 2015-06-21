@@ -10,7 +10,6 @@ namespace MusicPickerApp.Views.TabbedViews {
     public partial class ArtistsPage : ContentPage {
         public ArtistsPage() {
             InitializeComponent();
-            
         }
     }
 }
