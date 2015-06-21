@@ -7,14 +7,10 @@ using MusicPickerApp.ViewModels;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.Views {
-    public partial class DevicesListPage : ContentPage {
-
-        public DevicesListPage() {
-
+    public partial class DevicePage : TabbedPage {
+        public DevicePage() {
             InitializeComponent();
-            this.BindingContext = new DevicesListViewModel();
-            
-            
+            this.BindingContext = new DeviceViewModel();
         }
     }
 }

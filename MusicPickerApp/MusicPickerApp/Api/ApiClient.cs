@@ -15,7 +15,7 @@ namespace MusicPickerApp.Api
     public sealed class ApiClient
     {
         private static readonly ApiClient instance = new ApiClient();
-        private static readonly Uri endpoint = new Uri("http://192.168.0.1:50559");
+        private static readonly Uri endpoint = new Uri("http://192.168.0.12:50559");
         private string bearer;
         private bool authenticated;
 

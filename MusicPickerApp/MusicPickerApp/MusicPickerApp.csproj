@@ -49,12 +49,16 @@
     <Compile Include="Toolkit\ObjectToListConverter.cs" />
     <Compile Include="ViewModels\DeviceListDebug.cs" />
     <Compile Include="ViewModels\DevicesListViewModel.cs" />
+    <Compile Include="ViewModels\DeviceViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\AddDeviceViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Views\AddDevicePage.xaml.cs">
       <DependentUpon>AddDevicePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DevicePage.xaml.cs">
+      <DependentUpon>DevicePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DevicesListPage.xaml.cs">
       <DependentUpon>DevicesListPage.xaml</DependentUpon>
@@ -69,6 +73,9 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\portable-net45+wp80+win8+wpa81+aspnetcore50\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Behaviors">
+      <HintPath>..\..\packages\Xamarin.Forms.Behaviors.1.3.1\lib\Xamarin.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\..\packages\Xamarin.Forms.1.3.3.6323\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
@@ -120,6 +127,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AddDevicePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DevicePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
