@@ -32,22 +32,16 @@ namespace MusicPickerApp.ViewModels {
             LoginCommand = new Command(execute: () => {
                 IsLoading = true;
 
-                //async getToken(name,password)
-                //if(sucess)
-                //App.Navigation.PushAsync(new DevicesPage());
-                /*while (IsLoading) {
                 
-                }*/
-                // Name = Password = ""
                 try {
 
 
-                    if (client.LogIn(name, password)) {
+                    //if (client.LogIn(name, password)) {
                         App.Navigation.PushAsync(new DevicesListPage());
-                    } else {
-                        App.Current.MainPage.DisplayAlert("Error", "Your login is incorrect or does not exist", "Ok");
+                   // } else {
+                     //   App.Current.MainPage.DisplayAlert("Error", "Your login is incorrect or does not exist", "Ok");
 
-                    }
+                    //}
                 } catch (Exception e) {
 
                     App.Current.MainPage.DisplayAlert("Error", e.Message, "Ok");
