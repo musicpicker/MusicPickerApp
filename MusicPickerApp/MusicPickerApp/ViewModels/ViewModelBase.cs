@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MusicPickerApp.Api;
 
 namespace MusicPickerApp.ViewModels {
     public class ViewModelBase : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
+        protected ApiClient client = ApiClient.Instance;
 
         protected bool SetProperty<T>(ref T storage, T value,
                                       [CallerMemberName] string propertyName = null) {

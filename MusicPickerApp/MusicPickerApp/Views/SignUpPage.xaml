@@ -9,7 +9,7 @@
              Title="{StaticResource AppName}">
   <ContentPage.Resources>
     <ResourceDictionary>
-      <viewModels:AddDeviceViewModel x:Key="viewModel"/>
+      <viewModels:SignUpViewModel x:Key="viewModel"/>
       <Style x:Key="loginStyle" TargetType="StackLayout">
         <Setter Property="Padding">
           <Setter.Value>

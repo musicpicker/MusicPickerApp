@@ -9,14 +9,8 @@ using Xamarin.Forms;
 namespace MusicPickerApp.Views {
     public partial class DevicesListPage : ContentPage {
 
-        public static List<DeviceView> DevicesView {
-            get;
-            set;
-        }
-        public DevicesListPage(List<DeviceView> Devices) {
+        public DevicesListPage() {
 
-            //Devices.Sort<>()...
-            DevicesView = Devices;
             InitializeComponent();
             
             

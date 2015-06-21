@@ -12,16 +12,20 @@ using MusicPickerApp.Api.Util;
 
 namespace MusicPickerApp.Api
 {
-    public class ApiClient
+    public sealed class ApiClient
     {
-        private Uri endpoint;
+        private static readonly ApiClient instance = new ApiClient();
+        private static readonly Uri endpoint = new Uri("http://192.168.0.1:50559");
         private string bearer;
         private bool authenticated;
 
-        public ApiClient(Uri endpoint)
-        {
-            this.endpoint = endpoint;
+        public static ApiClient Instance {
+            get {
+                return instance;
+            }
         }
+
+        private ApiClient(){ }
 
         public bool SignUp(string username, string password)
         {

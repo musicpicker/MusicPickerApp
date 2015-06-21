@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MusicPickerApp.Views;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
@@ -14,12 +15,27 @@ namespace MusicPickerApp.ViewModels {
 
         public SignUpViewModel() {
             RegisterCommand = new Command(execute: () => {
-                //Add new Device with name and pwd
 
-                //at the end
-                /*if(failedconnection)
-                 * App.Current.MainPage.DisplayAlert("Error,"Your login name or password doesnt exits","Ok")*/
-                Name = Password = "";
+                if (password == cpassword) {
+                    try {
+
+                    
+                    if (client.SignUp(name, password)) {
+                        App.Current.MainPage.DisplayAlert("Sucess", "Your inscription is done !", "Ok");
+                        client.LogIn(name, password);
+                        App.Navigation.PushAsync(new DevicesListPage());
+                    } else {
+                        App.Current.MainPage.DisplayAlert("Error", "Your inscription is not correct please retry", "Ok");
+                    }
+                    } catch (Exception e) {
+
+                        App.Current.MainPage.DisplayAlert("Error", e.Message, "Ok");
+                    }
+                } else {
+                    App.Current.MainPage.DisplayAlert("Error", "Your password is not the same on the two entries", "Ok");
+                }
+                
+                Name = Password = CPassword = "";
             });
 
         }

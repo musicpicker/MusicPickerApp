@@ -19,12 +19,12 @@
     </ToolbarItem>
   </ContentPage.ToolbarItems>
   <ListView x:Name="DevicesList"
-            ItemsSource="{x:Static views:DevicesListPage.DevicesView}"
+            ItemsSource="{x:Static viewModels:DevicesListViewModel.DeviceList}"
             BackgroundColor="#2D2D2D">
 
     <ListView.ItemTemplate>
       <DataTemplate>
-        <TextCell Text="{Binding DeviceName}" Detail="{Binding IsOwner, StringFormat='Owner : {0}'}"
+        <TextCell Text="{Binding Name}" Detail="Owner"
                   TextColor="White"
                   DetailColor="#B2B2B2"
                   BindingContext="{StaticResource viewModel}"

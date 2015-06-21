@@ -10,7 +10,7 @@ using MusicPickerApp.Api;
 
 namespace MusicPickerApp.ViewModels {
     public class LoginViewModel : ViewModelBase {
-        private ApiClient client = new ApiClient(new Uri("http://localhost:50559"));
+
         private string name;
         private string password;
         private bool isLoading = false;
@@ -24,6 +24,7 @@ namespace MusicPickerApp.ViewModels {
         }
 
         public LoginViewModel() {
+
             SignUpCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new SignUpPage());
 
@@ -38,23 +39,21 @@ namespace MusicPickerApp.ViewModels {
                 
                 }*/
                 // Name = Password = ""
-                if (name == "toto" && password == "toto") {
-                    List<DeviceView> Devices = new List<DeviceView>();
-                    List<MusicPickerApp.Api.Util.Device> list = client.DevicesGet();
-                    Devices.Add(new DeviceView(list[0].Name, true));
-                    Devices.Add(new DeviceView("Device 2", false));
-                    Devices.Add(new DeviceView("Device 3", false));
-                    Devices.Add(new DeviceView("Device 4", true));
-                    Devices.Add(new DeviceView("Device 5", false));
-                    Devices.Add(new DeviceView("Device 6", false));
+                try {
 
-                    App.Navigation.PushAsync(new DevicesListPage(Devices));
-                } else {
-                    App.Current.MainPage.DisplayAlert("Error", "Your login is incorrect or does not exit", "Ok");
-                    
+
+                    if (client.LogIn(name, password)) {
+                        App.Navigation.PushAsync(new DevicesListPage());
+                    } else {
+                        App.Current.MainPage.DisplayAlert("Error", "Your login is incorrect or does not exist", "Ok");
+
+                    }
+                } catch (Exception e) {
+
+                    App.Current.MainPage.DisplayAlert("Error", e.Message, "Ok");
                 }
                 Name = Password = "";
-                
+
             });
 
         }

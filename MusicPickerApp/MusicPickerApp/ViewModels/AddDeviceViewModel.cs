@@ -15,9 +15,9 @@ namespace MusicPickerApp.ViewModels {
             AddNewDeviceCommand = new Command(execute: () => {
                 //Add new Device with name and pwd
 
-                //at the end
-                /*if(failedconnection)
-                 * App.Current.MainPage.DisplayAlert("Error,"Your login name or password doesnt exits","Ok")*/
+                if (client.DeviceAdd(deviceName) !=-1) {
+
+                }
                 DeviceName = DevicePassword = "";
             });
 
