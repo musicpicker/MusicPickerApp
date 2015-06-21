@@ -18,6 +18,7 @@ namespace MusicPickerApp.Api
         private static readonly Uri endpoint = new Uri("http://192.168.0.12:50559");
         private string bearer;
         private bool authenticated;
+        public Device CurrentDevice { get; set; }
 
         public static ApiClient Instance {
             get {

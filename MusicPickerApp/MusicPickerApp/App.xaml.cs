@@ -10,7 +10,7 @@ namespace MusicPickerApp
 {
     public partial class App : Application
     {
-        private ApiClient client;
+        
         public App()
         {
             // The root page of your application

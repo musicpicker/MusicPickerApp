@@ -6,36 +6,31 @@
              xmlns:views="clr-namespace:MusicPickerApp.Views;assembly=MusicPickerApp"
              xmlns:viewModels="clr-namespace:MusicPickerApp.ViewModels;assembly=MusicPickerApp"
              xmlns:toolkit="clr-namespace:MusicPickerApp.Toolkit;assembly=MusicPickerApp"
-             x:Class="MusicPickerApp.Views.DevicesListPage"
+             x:Class="MusicPickerApp.Views.ArtistAlbumsPage"
              x:Name ="MainPage"
              Title="Devices"
              Style="{StaticResource defaultStyle}">
   <ContentPage.Resources>
     <ResourceDictionary>
-      <viewModels:DevicesListViewModel x:Key="viewModel"/>
+      <viewModels:ArtistsAlbumsViewModel x:Key="viewModel"/>
     </ResourceDictionary>
   </ContentPage.Resources>
-  <ContentPage.ToolbarItems >
-    <ToolbarItem Text="New Device" Order="Primary" BindingContext="{StaticResource viewModel}"
-                 Command="{Binding AddDevicePageCommand}">
-    </ToolbarItem>
-  </ContentPage.ToolbarItems>
-  <ListView x:Name="DevicesList"
+  <ListView x:Name="ArtistsList"
             BindingContext="{StaticResource viewModel}"
-            ItemsSource="{Binding DeviceList}"
+            ItemsSource="{Binding ArtistsList}"
             BackgroundColor="#2D2D2D">
 
     <ListView.ItemTemplate>
       <DataTemplate>
-        <TextCell Text="{Binding Name}" Detail="Owner"
+        <TextCell Text="{Binding Name}"
                   TextColor="White"
                   DetailColor="#B2B2B2">
           <b:Interaction.Behaviors>
             <b:BehaviorCollection>
               <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
                                 EventName="Tapped"
-                                CommandName="SelectDeviceCommand"
-                                CommandParameter="{Binding Id}"
+                                CommandName="SelectAlbumCommand"
+                                CommandParameter="{Binding Name}"
                                 />
             </b:BehaviorCollection>
           </b:Interaction.Behaviors>
@@ -43,5 +38,4 @@
       </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>
-
 </ContentPage>

@@ -9,20 +9,15 @@ using MusicPickerApp.Views;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
-
-    public class DeviceViewModel : ViewModelBase {
+    class ArtistsAlbumsViewModel : ViewModelBase {
         public Api.Util.Device Device { get; set; }
-
-        public List<Artist> ArtistsList { get; set; }
-        public List<Album> AlbumsList { get; set; }
-        public List<Track> TracksList { get; set; }
-        public DeviceViewModel() {
+        public Artist Artist { get; set; }
+        public List<Album> ArtistAlbums { get; set; }
+        public ArtistsAlbumsViewModel() {
             client.LogIn("Tom", "isen59");
             List<Api.Util.Device> devices = client.DevicesGet();
             Device = devices[0];
-            AlbumsList = client.DeviceGetAlbums(Device.Id);
-            ArtistsList = client.DeviceGetArtists(Device.Id);
-            TracksList = client.DeviceGetTracks(Device.Id);
+            ArtistAlbums = client.DeviceGetAlbumsFromArtist(Device.Id, "Kontinuum");
 
             DisplayPollPageCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new PollPage());

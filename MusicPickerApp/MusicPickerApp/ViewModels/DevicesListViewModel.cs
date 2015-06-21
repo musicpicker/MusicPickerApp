@@ -10,13 +10,14 @@ using Xamarin.Forms;
 namespace MusicPickerApp.ViewModels {
     public class DevicesListViewModel : ViewModelBase {
         public List<MusicPickerApp.Api.Util.Device> DeviceList { get; set; }
-        private MusicPickerApp.Api.Util.Device currentDeviceSelected { get; set; }
+
         public DevicesListViewModel() {
-           DeviceList = client.DevicesGet();
+            DeviceList = client.DevicesGet();
             AddDevicePageCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new AddDevicePage());
             });
-            SelectDeviceCommand = new Command<string>(execute: (string deviceName) => {
+            SelectDeviceCommand = new Command<int>(execute: (int deviceId) => {
+
                 App.Navigation.PushAsync(new DevicePage());
 
             });

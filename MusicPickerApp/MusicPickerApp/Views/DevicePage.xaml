@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:local="clr-namespace:MusicPickerApp;assembly=MusicPickerApp"
-             xmlns:b="clr-namespace:Xamarin.Behaviors;assembly=Xamarin.Behaviors"
+             xmlns:local="clr-namespace:MusicPickerApp;assembly=MusicPickerApp"
              xmlns:views="clr-namespace:MusicPickerApp.Views;assembly=MusicPickerApp"
              xmlns:viewModels="clr-namespace:MusicPickerApp.ViewModels;assembly=MusicPickerApp"
              xmlns:toolkit="clr-namespace:MusicPickerApp.Toolkit;assembly=MusicPickerApp"
+             xmlns:tabbedPages="clr-namespace:MusicPickerApp.Views.TabbedViews;assembly=MusicPickerApp"
              x:Class="MusicPickerApp.Views.DevicePage"
-             x:Name ="MainPage"
+             x:Name="MainPage"
              Title="{Binding Device.Name}"
              Style="{StaticResource defaultStyle}">
   <TabbedPage.Resources>
@@ -15,27 +15,14 @@
       <viewModels:DeviceViewModel x:Key="viewModel"/>
     </ResourceDictionary>
   </TabbedPage.Resources>
-
-  <TabbedPage.ItemTemplate>
-    <DataTemplate>
-      <ContentPage Title="Artists"
-                  BackgroundColor="#2D2D2D">
-        <StackLayout Padding="5, 25">
-
-        </StackLayout>
-      </ContentPage>
-      <ContentPage Title="Albums"
-                   BackgroundColor="#2D2D2D">
-        <StackLayout Padding="5, 25">
-
-        </StackLayout>
-      </ContentPage>
-      <ContentPage Title="Tracks"
-                   BackgroundColor="#2D2D2D">
-        <StackLayout Padding="5, 25">
-
-        </StackLayout>
-      </ContentPage>
-    </DataTemplate>
-  </TabbedPage.ItemTemplate>
+  <TabbedPage.ToolbarItems>
+    <ToolbarItem Text="Poll" Order="Primary" BindingContext="{StaticResource viewModel}"
+                 Command="{Binding DisplayPollPageCommand}">
+    </ToolbarItem>
+  </TabbedPage.ToolbarItems>
+  <TabbedPage.Children>
+    <tabbedPages:ArtistsPage Title="Artists"/>
+    <tabbedPages:AlbumsPage Title="Albums"/>
+    <tabbedPages:TracksPage Title="Tracks"/>
+  </TabbedPage.Children>
 </TabbedPage>
