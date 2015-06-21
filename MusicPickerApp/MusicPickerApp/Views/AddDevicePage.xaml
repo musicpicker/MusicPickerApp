@@ -24,16 +24,17 @@
       </Style>
     </ResourceDictionary>
   </ContentPage.Resources>
-  <StackLayout Style="{StaticResource formStyle}"
-               BindingContext="{StaticResource viewModel}">
-    <Entry x:Name="nameEntry" Placeholder="Device Name" Keyboard="Default" Text="{Binding DeviceName}" />
-    <Entry x:Name="pwdEntry" Placeholder="Password" Keyboard="Default" IsPassword="True" Text="{Binding DevicePassword}" />
-    <Button x:Name="AddDeviceButton"
-            Text="Add Device"
-            VerticalOptions="Center"
-            HorizontalOptions="Fill"
-            Style="{StaticResource defaultButtonStyle}"
-            Command="{Binding AddNewDeviceCommand}"/>
-  </StackLayout>
-
+  <ScrollView>
+    <StackLayout Style="{StaticResource formStyle}"
+     BindingContext="{StaticResource viewModel}">
+      <Entry x:Name="nameEntry" Placeholder="Device Name" Keyboard="Default" Text="{Binding DeviceName}" />
+      <Entry x:Name="pwdEntry" Placeholder="Password" Keyboard="Default" IsPassword="True" Text="{Binding DevicePassword}" />
+      <Button x:Name="AddDeviceButton"
+              Text="Add Device"
+              VerticalOptions="Center"
+              HorizontalOptions="Fill"
+              Style="{StaticResource defaultButtonStyle}"
+              Command="{Binding AddNewDeviceCommand}"/>
+    </StackLayout>
+  </ScrollView>
 </ContentPage>

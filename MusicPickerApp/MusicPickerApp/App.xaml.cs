@@ -13,6 +13,8 @@ namespace MusicPickerApp
         private ApiClient client;
         public App()
         {
+            // The root page of your application
+            InitializeComponent();
             NavigationPage rootPage;
             if (Properties.ContainsKey("bearer")) {
                 /*if (client.LogIn(name, password)) {
@@ -23,12 +25,9 @@ namespace MusicPickerApp
                         }*/
                 rootPage = new NavigationPage(); //(new DevicesListPage(DevicesView))
             } else {
-              rootPage= new NavigationPage(new LoginPage());
+                rootPage = new NavigationPage(new LoginPage());
             }
-            
-            // The root page of your application
-            InitializeComponent();
-            
+           
             //ToolBar For Android
             rootPage.BarBackgroundColor = Color.FromHex("#387C13");
             MainPage = rootPage;
