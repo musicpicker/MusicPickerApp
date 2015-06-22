@@ -8,6 +8,9 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
+    /// <summary>
+    /// ViewModel of the DeviceList Page Which display the devices owned by the account
+    /// </summary>
     public class DevicesListViewModel : ViewModelBase {
         public List<MusicPickerApp.Api.Util.Device> DeviceList { get; private set; }
 

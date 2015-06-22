@@ -9,6 +9,10 @@ using MusicPickerApp.Views;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
+    /// <summary>
+    /// ViewModel of the Poll Page Which display on going poll or not
+    /// The view is only static, the vote system has not been implemented yet
+    /// </summary>
     class PollViewModel : ViewModelBase {
         public string DeviceName { get; private set; }
         public List<Track> PollList { get; private set; }

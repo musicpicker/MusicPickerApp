@@ -9,6 +9,10 @@ using Xamarin.Forms;
 using MusicPickerApp.Api;
 
 namespace MusicPickerApp.ViewModels {
+    /// <summary>
+    /// ViewModel of the Login Page
+    /// Gets data from the form and send it to the server to establish a connexion.
+    /// </summary>
     public class LoginViewModel : ViewModelBase {
 
         private string name;
@@ -22,7 +26,10 @@ namespace MusicPickerApp.ViewModels {
                 isLoading = value;
             }
         }
-
+        /// <summary>
+        /// When the log in is successful, the bearer is stored in App.Properties
+        /// Which can be used at the launch of the app
+        /// </summary>
         public LoginViewModel() {
 
             SignUpCommand = new Command(execute: () => {

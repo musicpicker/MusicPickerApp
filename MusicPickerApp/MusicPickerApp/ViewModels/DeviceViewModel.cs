@@ -9,7 +9,9 @@ using MusicPickerApp.Views;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
-
+    /// <summary>
+    /// ViewModel of the Device Page which display all data from the device in 3 tabs : Artists, Albums, Tracks
+    /// </summary>
     public class DeviceViewModel : ViewModelBase {
         public Api.Util.Device Device { get; set; }
 
