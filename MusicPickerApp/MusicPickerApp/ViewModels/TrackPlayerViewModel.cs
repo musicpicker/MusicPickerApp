@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MusicPickerApp.Api.Util;
+using MusicPickerApp.Views;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
@@ -16,6 +17,7 @@ namespace MusicPickerApp.ViewModels {
         public string AlbumName { get; private set; }
         public string AlbumYear { get; private set; }
         public string DeviceName { get; private set; }
+        public string Artwork { get; private set; }
 
         public TrackPlayerViewModel() {
 
@@ -34,6 +36,7 @@ namespace MusicPickerApp.ViewModels {
             ArtistName = client.CurrentArtist.Name;
             DeviceName = client.CurrentDevice.Name;
             AlbumName = client.CurrentAlbum.Name;
+            Artwork = client.CurrentAlbum.Artwork;
 
             PreviousTrackCommand = new Command(execute: () => {
                 //api.DevicePreviousTrack()
@@ -47,6 +50,9 @@ namespace MusicPickerApp.ViewModels {
                 //api.playTrack()
                 //api.resumeTrack()
             });
+            DisplayPollPageCommand = new Command(execute: () => {
+                App.Navigation.PushAsync(new PollPage());
+            });
 
         }
         public ICommand PreviousTrackCommand {
@@ -58,6 +64,10 @@ namespace MusicPickerApp.ViewModels {
             private set;
         }
         public ICommand PlayResumeCommand {
+            get;
+            private set;
+        }
+        public ICommand DisplayPollPageCommand {
             get;
             private set;
         }

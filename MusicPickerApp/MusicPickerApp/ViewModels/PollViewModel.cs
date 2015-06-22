@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MusicPickerApp.Api.Util;
+using MusicPickerApp.Views;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
@@ -24,11 +25,15 @@ namespace MusicPickerApp.ViewModels {
                 App.Current.MainPage.DisplayAlert("Done !", "Your vote has been taken", "Ok");
             });
 
+            
+
 
         }
         public ICommand VoteForTrackCommand {
             get;
             private set;
         }
+        
+
     }
 }

@@ -22,7 +22,7 @@
 
     <ListView.ItemTemplate>
       <DataTemplate>
-        <TextCell Text="{Binding Name}" Detail="{Binding ArtistId}"
+        <TextCell Text="{Binding Name}" 
                   TextColor="White"
                   DetailColor="#B2B2B2">
           <b:Interaction.Behaviors>
@@ -30,7 +30,7 @@
               <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
                                 EventName="Tapped"
                                 CommandName="SelectAlbumCommand"
-                                CommandParameter="{Binding Id}"
+                                CommandParameter="{Binding Name}"
                                 />
             </b:BehaviorCollection>
           </b:Interaction.Behaviors>

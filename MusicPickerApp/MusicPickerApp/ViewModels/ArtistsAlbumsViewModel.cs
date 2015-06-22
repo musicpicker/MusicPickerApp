@@ -20,11 +20,13 @@ namespace MusicPickerApp.ViewModels {
             Device = client.CurrentDevice;
             Artist = client.CurrentArtist;
             ArtistName = Artist.Name;
-            ArtistAlbums = client.DeviceGetAlbumsFromArtist(Device.Id, Artist.Name);
+            ArtistAlbums = client.DeviceGetAlbumsFromArtist(Device.Id, Artist.Id);
 
 
-            SelectAlbumCommand = new Command<int>(execute: (int albumId) => {
-                client.CurrentAlbum = ArtistAlbums[albumId - 1];
+            SelectAlbumCommand = new Command<string>(execute: (string albumName) => {
+                client.CurrentAlbum = (from item in ArtistAlbums
+                                       where item.Name == albumName
+                                       select item).First();
                 App.Navigation.PushAsync(new AlbumTracksPage());
             });
             DisplayPollPageCommand = new Command(execute: () => {

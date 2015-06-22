@@ -23,10 +23,12 @@ namespace MusicPickerApp.ViewModels {
             if (ArtistName == null || artist.Name != client.CurrentArtist.Name) {
                 client.CurrentArtist = artist;
             }
-                ArtistName = client.CurrentArtist.Name;
+            ArtistName = client.CurrentArtist.Name;
 
-            SelectTrackCommand = new Command<int>(execute: (int trackId) => {
-                client.CurrentTrack = AlbumTracks[trackId - 1];
+            SelectTrackCommand = new Command<string>(execute: (string trackName) => {
+                client.CurrentTrack = (from item in AlbumTracks
+                                       where item.Name == trackName
+                                       select item).First();
                 App.Navigation.PushAsync(new TrackPlayerPage());
             });
             DisplayPollPageCommand = new Command(execute: () => {

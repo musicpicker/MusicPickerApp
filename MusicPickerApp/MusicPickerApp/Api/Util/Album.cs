@@ -13,5 +13,6 @@ namespace MusicPickerApp.Api.Util
         public int Year { get; set; }
         public string Mbld { get; set; }
         public int ArtistId { get; set; }
+        public string Artwork { get; set; }
     }
 }

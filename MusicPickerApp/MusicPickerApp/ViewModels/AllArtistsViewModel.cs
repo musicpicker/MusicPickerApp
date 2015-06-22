@@ -15,8 +15,7 @@ namespace MusicPickerApp.ViewModels {
 
 
         public AllArtistsViewModel() {
-            //client.CurrentDevice.Id
-            ArtistsList = client.DeviceGetArtists(1);
+            ArtistsList = client.DeviceGetArtists(client.CurrentDevice.Id);
 
 
         }

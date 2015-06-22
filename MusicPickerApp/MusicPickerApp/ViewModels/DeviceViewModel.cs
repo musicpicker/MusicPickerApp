@@ -19,23 +19,28 @@ namespace MusicPickerApp.ViewModels {
 
 
         public DeviceViewModel() {
-            client.LogIn("Tom", "isen59");
-            Device = client.CurrentDevice = client.DevicesGet()[0];
-            //Device = client.CurrentDevice;
+
+            Device = client.CurrentDevice;
             DisplayPollPageCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new PollPage());
             });
-            SelectArtistCommand = new Command<int>(execute: (int artistId) => {
-                client.CurrentArtist = allArtistsViewModel.ArtistsList[artistId - 1];
+            SelectArtistCommand = new Command<string>(execute: (string artistName) => {
+                client.CurrentArtist = (from item in allArtistsViewModel.ArtistsList
+                                        where item.Name == artistName
+                                        select item).First();
                 App.Navigation.PushAsync(new ArtistAlbumsPage());
             });
 
-            SelectAlbumCommand = new Command<int>(execute: (int albumId) => {
-                client.CurrentAlbum = allAlbumsViewModel.AlbumsList[albumId - 1];
+            SelectAlbumCommand = new Command<string>(execute: (string albumName) => {
+                client.CurrentAlbum = (from item in allAlbumsViewModel.AlbumsList
+                                       where item.Name == albumName
+                                       select item).First();
                 App.Navigation.PushAsync(new AlbumTracksPage());
             });
-            SelectTrackCommand = new Command<int>(execute: (int trackId) => {
-                client.CurrentTrack = allTracksViewModel.TracksList[trackId - 1];
+            SelectTrackCommand = new Command<string>(execute: (string trackName) => {
+                client.CurrentTrack = (from item in allTracksViewModel.TracksList
+                                       where item.Name == trackName
+                                       select item).First();
                 App.Navigation.PushAsync(new TrackPlayerPage());
             });
 

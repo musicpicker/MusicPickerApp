@@ -35,7 +35,7 @@
      BindingContext="{StaticResource viewModel}"
       BackgroundColor="#2D2D2D">
       <StackLayout Orientation="Horizontal" >
-        <Image Source= "{toolkit:ImageResource MusicPickerApp.Images.Logo.png}"
+        <Image Source= "{Binding Artwork}"
                HorizontalOptions="Start"
                VerticalOptions="Start">
           <Image.WidthRequest>

@@ -34,7 +34,7 @@
               <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
                                 EventName="Tapped"
                                 CommandName="SelectTrackCommand"
-                                CommandParameter="{Binding Id}"
+                                CommandParameter="{Binding Name}"
                                 />
             </b:BehaviorCollection>
           </b:Interaction.Behaviors>

@@ -30,7 +30,7 @@
               <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
                                 EventName="Tapped"
                                 CommandName="SelectArtistCommand"
-                                CommandParameter="{Binding Id}"
+                                CommandParameter="{Binding Name}"
                                 />
             </b:BehaviorCollection>
           </b:Interaction.Behaviors>
