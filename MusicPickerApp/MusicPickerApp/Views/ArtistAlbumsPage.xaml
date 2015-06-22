@@ -15,10 +15,11 @@
       <viewModels:ArtistsAlbumsViewModel x:Key="viewModel" x:Name="viewModel"/>
     </ResourceDictionary>
   </ContentPage.Resources>
-  <ToolbarItem Text="Poll" Order="Primary" BindingContext="{StaticResource viewModel}"
-             Command="{Binding DisplayPollPageCommand}">
-  </ToolbarItem>
-  <ListView x:Name="ArtistsList"
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Poll" Order="Primary" BindingContext="{StaticResource viewModel}"
+      Command="{Binding DisplayPollPageCommand}"/>
+  </ContentPage.ToolbarItems>
+  <ListView x:Name="ArtistAlbums"
             BindingContext="{StaticResource viewModel}"
             ItemsSource="{Binding ArtistAlbums}"
             BackgroundColor="#2D2D2D">
@@ -33,7 +34,7 @@
               <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
                                 EventName="Tapped"
                                 CommandName="SelectAlbumCommand"
-                                CommandParameter="{Binding Name}"
+                                CommandParameter="{Binding Id}"
                                 />
             </b:BehaviorCollection>
           </b:Interaction.Behaviors>

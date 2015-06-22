@@ -17,8 +17,7 @@
   </ContentPage.Resources>
   <ContentPage.ToolbarItems >
     <ToolbarItem Text="New Device" Order="Primary" BindingContext="{StaticResource viewModel}"
-                 Command="{Binding AddDevicePageCommand}">
-    </ToolbarItem>
+                 Command="{Binding AddDevicePageCommand}"/>
   </ContentPage.ToolbarItems>
   <ListView x:Name="DevicesList"
             BindingContext="{StaticResource viewModel}"

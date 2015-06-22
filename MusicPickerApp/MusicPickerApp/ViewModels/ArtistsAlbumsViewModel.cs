@@ -24,6 +24,7 @@ namespace MusicPickerApp.ViewModels {
 
 
             SelectAlbumCommand = new Command<int>(execute: (int albumId) => {
+                client.CurrentAlbum = ArtistAlbums[albumId - 1];
                 App.Navigation.PushAsync(new AlbumTracksPage());
             });
             DisplayPollPageCommand = new Command(execute: () => {

@@ -264,7 +264,7 @@ namespace MusicPickerApp.Api
 
         public List<Track> DeviceGetTracksFromAlbum(int deviceId, int albumId)
         {
-            Uri uri = new Uri(endpoint, string.Format("/api/Tracks?device={0}&album={1}}", deviceId, albumId));
+            Uri uri = new Uri(endpoint, string.Format("/api/Tracks?device={0}&album={1}", deviceId, albumId));
             HttpResponseMessage result = (new HttpClient()
             {
                 DefaultRequestHeaders = { Authorization = new AuthenticationHeaderValue("Bearer", this.bearer) }

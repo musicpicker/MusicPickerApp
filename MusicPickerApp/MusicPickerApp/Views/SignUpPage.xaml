@@ -5,7 +5,7 @@
              xmlns:viewModels="clr-namespace:MusicPickerApp.ViewModels;assembly=MusicPickerApp"
              xmlns:toolkit="clr-namespace:MusicPickerApp.Toolkit;assembly=MusicPickerApp"
              x:Class="MusicPickerApp.Views.SignUpPage"
-             Style="{StaticResource defaultStyle}"
+             Style="{StaticResource defautPadding}"
              Title="{StaticResource AppName}">
   <ContentPage.Resources>
     <ResourceDictionary>

@@ -1,9 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MusicPickerApp.Views.AlbumTracksPage">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
-  <ToolbarItem Text="Poll" Order="Primary" BindingContext="{StaticResource viewModel}"
-               Command="{Binding DisplayPollPageCommand}">
-  </ToolbarItem>
+             xmlns:local="clr-namespace:MusicPickerApp;assembly=MusicPickerApp"
+             xmlns:b="clr-namespace:Xamarin.Behaviors;assembly=Xamarin.Behaviors"
+             xmlns:views="clr-namespace:MusicPickerApp.Views;assembly=MusicPickerApp"
+             xmlns:viewModels="clr-namespace:MusicPickerApp.ViewModels;assembly=MusicPickerApp"
+             xmlns:toolkit="clr-namespace:MusicPickerApp.Toolkit;assembly=MusicPickerApp"
+             x:Class="MusicPickerApp.Views.AlbumTracksPage"
+             x:Name ="MainPage"
+             Title="{Binding AlbumName}"
+             Style="{StaticResource defaultStyle}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <viewModels:AlbumTracksViewModel x:Key="viewModel" x:Name="viewModel"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Poll" Order="Primary" BindingContext="{StaticResource viewModel}"
+      Command="{Binding DisplayPollPageCommand}"/>
+  </ContentPage.ToolbarItems>
+  <ListView x:Name="AlbumTracks"
+            BindingContext="{StaticResource viewModel}"
+            ItemsSource="{Binding AlbumTracks}"
+            BackgroundColor="#2D2D2D">
+
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <TextCell Text="{Binding Name}" Detail="{Binding ArtistName}"
+                  TextColor="White"
+                  DetailColor="#B2B2B2">
+          <b:Interaction.Behaviors>
+            <b:BehaviorCollection>
+              <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
+                                EventName="Tapped"
+                                CommandName="SelectTrackCommand"
+                                CommandParameter="{Binding Id}"
+                                />
+            </b:BehaviorCollection>
+          </b:Interaction.Behaviors>
+        </TextCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
 </ContentPage>

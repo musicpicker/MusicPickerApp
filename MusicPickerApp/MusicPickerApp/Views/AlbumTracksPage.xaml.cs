@@ -10,6 +10,7 @@ namespace MusicPickerApp.Views {
     public partial class AlbumTracksPage : ContentPage {
         public AlbumTracksPage() {
             InitializeComponent();
+            this.BindingContext = viewModel;
         }
     }
 }

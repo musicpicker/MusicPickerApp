@@ -13,12 +13,56 @@
   <ContentPage.Resources>
     <ResourceDictionary>
       <viewModels:TrackPlayerViewModel x:Key="viewModel" x:Name="viewModel"/>
+      <Style x:Key="defaultPadding" TargetType="StackLayout">
+        <Setter Property="Padding">
+          <Setter.Value>
+            <OnPlatform x:TypeArguments="Thickness"
+                        iOS="20, 60, 20, 20"
+                        Android="20,40,20,20"
+                        WinPhone="20,40,20,20" />
+          </Setter.Value>
+        </Setter>
+      </Style>
     </ResourceDictionary>
   </ContentPage.Resources>
-  <ToolbarItem Text="Poll" Order="Primary" BindingContext="{StaticResource viewModel}"
-               Command="{Binding DisplayPollPageCommand}">
-  </ToolbarItem>
-  <StackLayout>
-
-  </StackLayout>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Poll" Order="Primary" BindingContext="{StaticResource viewModel}"
+      Command="{Binding DisplayPollPageCommand}"/>
+  </ContentPage.ToolbarItems>
+  <ScrollView>
+    <StackLayout
+     Style="{StaticResource defaultPadding}"
+     BindingContext="{StaticResource viewModel}"
+      BackgroundColor="#2D2D2D">
+      <StackLayout Orientation="Horizontal" >
+        <Image Source= "{toolkit:ImageResource MusicPickerApp.Images.Logo.png}"
+               HorizontalOptions="Start"
+               VerticalOptions="Start">
+          <Image.WidthRequest>
+            <OnPlatform x:TypeArguments="x:Double"
+                        iOS="120"
+                        Android="120"
+                        WinPhone="180" />
+          </Image.WidthRequest>
+        </Image>
+        <StackLayout Orientation="Vertical"
+                     Padding="10,0,0,0">
+          <Label Text="{Binding TrackName}" FontSize="Large" VerticalOptions="Start"/>
+          <Label Text="{Binding ArtistName}" FontSize="Medium" VerticalOptions="Center"/>
+          <Label Text="{Binding AlbumName}" FontSize="Medium" VerticalOptions="Center"/>
+          <Label Text="{Binding AlbumYear}" FontSize="Medium" VerticalOptions="End"/>
+        </StackLayout>
+      </StackLayout>
+      <StackLayout Padding="0,40,0,30" Orientation="Horizontal">
+        <Label x:Name="timeStart" Text="00:00" FontSize="Small" HorizontalOptions="Start"/>
+        <ProgressBar x:Name="songDuration" VerticalOptions="Center" Progress="0.5" HorizontalOptions="FillAndExpand"/>
+        <Label x:Name="timeEnd" Text="02:00" FontSize="Small" HorizontalOptions="End"/>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal" Padding="0,20,0,20" BindingContext="{StaticResource viewModel}">
+        <Button x:Name="backward" Text="Back" FontSize="Medium" HorizontalOptions="StartAndExpand" Command="{Binding PreviousTrackCommand}" />
+        <Button x:Name="playpause" Text="Play/Resume" FontSize="Medium" HorizontalOptions="CenterAndExpand" Command="{Binding PlayResumeCommand}"/>
+        <Button x:Name="forward" Text="Next" FontSize="Medium" HorizontalOptions="EndAndExpand" Command="{Binding NextTrackCommand}"/>
+      </StackLayout>
+    </StackLayout>
+  </ScrollView>
 </ContentPage>
