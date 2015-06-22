@@ -9,6 +9,9 @@ using MusicPickerApp.Views;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
+    /// <summary>
+    /// ViewModel of the Track Player Page Which display the player and allow the user to control the device with the app
+    /// </summary>
     class TrackPlayerViewModel : ViewModelBase {
         public Api.Util.Device Device { get; private set; }
 

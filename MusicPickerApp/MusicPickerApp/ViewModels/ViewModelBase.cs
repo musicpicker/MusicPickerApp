@@ -4,6 +4,9 @@ using System.Runtime.CompilerServices;
 using MusicPickerApp.Api;
 
 namespace MusicPickerApp.ViewModels {
+    /// <summary>
+    /// Base ViewModel for the Data Binding
+    /// </summary>
     public class ViewModelBase : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
         protected ApiClient client = ApiClient.Instance;

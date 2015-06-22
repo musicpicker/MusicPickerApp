@@ -8,11 +8,18 @@ using MusicPickerApp.Views;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
+    /// <summary>
+    /// ViewModel of the Sign Up
+    /// Gets data from the form and send it to the server to register the new user and establish a connexion.
+    /// </summary>
     class SignUpViewModel : ViewModelBase {
         private string name;
         private string password;
         private string cpassword;
-
+        /// <summary>
+        /// When the log in is successful, the bearer is stored in App.Properties
+        /// Which can be used at the launch of the app
+        /// </summary>
         public SignUpViewModel() {
             RegisterCommand = new Command(execute: () => {
 
