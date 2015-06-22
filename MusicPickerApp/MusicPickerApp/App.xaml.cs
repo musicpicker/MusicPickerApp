@@ -17,19 +17,14 @@ namespace MusicPickerApp
             InitializeComponent();
             NavigationPage rootPage;
             if (Properties.ContainsKey("bearer")) {
-                /*if (client.LogIn(name, password)) {
-                        List<DeviceView> DevicesView = new List<DeviceView>();
-                        List<MusicPickerApp.Api.Util.Device> list = client.DevicesGet();
-                        foreach (var device in list) {
-                            DevicesView.Add(new DeviceView(device.Name, true));
-                        }*/
-                rootPage = new NavigationPage(); //(new DevicesListPage(DevicesView))
+                ApiClient.Instance.ProvideBearer(App.Current.Properties["bearer"] as string);
+                rootPage = new NavigationPage((new DevicesListPage()));
             } else {
-                //DEBUG
+                
                 rootPage = new NavigationPage(new LoginPage());
             }
            
-            //ToolBar For Android
+            //ToolBar Color For Android
             rootPage.BarBackgroundColor = Color.FromHex("#387C13");
             MainPage = rootPage;
             App.Navigation = rootPage.Navigation;
@@ -48,11 +43,13 @@ namespace MusicPickerApp
         protected override void OnSleep()
         {
             // Handle when your app sleeps
+            App.Current.Properties["bearer"] = ApiClient.Instance.RetrieveBearer();
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
+             ApiClient.Instance.ProvideBearer(App.Current.Properties["bearer"] as string);
         }
     }
 }

@@ -21,6 +21,9 @@ namespace MusicPickerApp.ViewModels {
         public DeviceViewModel() {
 
             Device = client.CurrentDevice;
+
+            client.connectToHub();
+
             DisplayPollPageCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new PollPage());
             });

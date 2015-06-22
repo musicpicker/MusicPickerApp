@@ -23,6 +23,7 @@ namespace MusicPickerApp.ViewModels {
                     if (client.SignUp(name, password)) {
                         App.Current.MainPage.DisplayAlert("Sucess", "Your inscription is done !", "Ok");
                         client.LogIn(name, password);
+                        App.Current.Properties["bearer"] = client.RetrieveBearer();
                         App.Navigation.PushAsync(new DevicesListPage());
                     } else {
                         App.Current.MainPage.DisplayAlert("Error", "Your inscription is not correct please retry", "Ok");

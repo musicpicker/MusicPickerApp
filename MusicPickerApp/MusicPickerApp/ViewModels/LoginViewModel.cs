@@ -37,6 +37,7 @@ namespace MusicPickerApp.ViewModels {
 
 
                     if (client.LogIn(name, password)) {
+                        App.Current.Properties["bearer"] = client.RetrieveBearer();
                         App.Navigation.PushAsync(new DevicesListPage());
                     } else {
                         App.Current.MainPage.DisplayAlert("Error", "Your login is incorrect or does not exist", "Ok");

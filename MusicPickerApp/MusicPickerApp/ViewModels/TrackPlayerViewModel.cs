@@ -47,8 +47,7 @@ namespace MusicPickerApp.ViewModels {
                 //api.playTrack()
             });
             PlayResumeCommand = new Command(execute: () => {
-                //api.playTrack()
-                //api.resumeTrack()
+                client.playTrack();
             });
             DisplayPollPageCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new PollPage());
