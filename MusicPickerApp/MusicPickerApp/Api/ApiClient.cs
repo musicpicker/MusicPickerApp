@@ -14,8 +14,9 @@ namespace MusicPickerApp.Api
 {
     public sealed class ApiClient
     {
+        private static readonly string SERVER_URL = "http://localhost:50559";
         private static readonly ApiClient instance = new ApiClient();
-        private static readonly Uri endpoint = new Uri("http://192.168.0.12:50559");
+        private static readonly Uri endpoint = new Uri(SERVER_URL);
         private string bearer;
         private bool authenticated;
         public Device CurrentDevice { get; set; }
@@ -213,9 +214,9 @@ namespace MusicPickerApp.Api
             return JsonConvert.DeserializeObject<List<Album>>(result.Content.ReadAsStringAsync().Result);
         }
 
-        public List<Album> DeviceGetAlbumsFromArtist(int deviceId, string artist)
+        public List<Album> DeviceGetAlbumsFromArtist(int deviceId, int artistId)
         {
-            Uri uri = new Uri(endpoint, string.Format("/api/Albums?device={0}&artist={1}", deviceId, artist));
+            Uri uri = new Uri(endpoint, string.Format("/api/Albums?device={0}&artist={1}", deviceId, artistId));
 
             HttpResponseMessage result = (new HttpClient()
             {
