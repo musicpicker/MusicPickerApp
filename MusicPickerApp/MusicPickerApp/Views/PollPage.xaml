@@ -1,6 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MusicPickerApp.Views.PollPage">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+             xmlns:local="clr-namespace:MusicPickerApp;assembly=MusicPickerApp"
+             xmlns:b="clr-namespace:Xamarin.Behaviors;assembly=Xamarin.Behaviors"
+             xmlns:views="clr-namespace:MusicPickerApp.Views;assembly=MusicPickerApp"
+             xmlns:viewModels="clr-namespace:MusicPickerApp.ViewModels;assembly=MusicPickerApp"
+             xmlns:toolkit="clr-namespace:MusicPickerApp.Toolkit;assembly=MusicPickerApp"
+             x:Class="MusicPickerApp.Views.PollPage"
+             x:Name ="MainPage"
+             Title="{Binding DeviceName}"
+             Style="{StaticResource defaultStyle}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <viewModels:PollViewModel x:Key="viewModel" x:Name="viewModel"/>
+      <Style x:Key="defaultPadding" TargetType="StackLayout">
+        <Setter Property="Padding">
+          <Setter.Value>
+            <OnPlatform x:TypeArguments="Thickness"
+                        iOS="20, 60, 20, 20"
+                        Android="20,40,20,20"
+                        WinPhone="20,40,20,20" />
+          </Setter.Value>
+        </Setter>
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ScrollView>
+    <StackLayout
+     Style="{StaticResource defaultPadding}"
+     BindingContext="{StaticResource viewModel}"
+      BackgroundColor="#2D2D2D">
+      <Label Text="No ongoing poll on this device for the moment." IsVisible="True"/>
+      <Label Text="Vote for the next track in the list below" IsVisible="False"/>
+      <ListView x:Name="PollList"
+           BindingContext="{StaticResource viewModel}"
+           ItemsSource="{Binding PollList}"
+           BackgroundColor="#2D2D2D"
+           IsVisible ="False">
+
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <TextCell Text="{Binding Name}" Detail="{Binding ArtistName}"
+                      TextColor="White"
+                      DetailColor="#B2B2B2">
+              <b:Interaction.Behaviors>
+                <b:BehaviorCollection>
+                  <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
+                                    EventName="Tapped"
+                                    CommandName="VoteForTrackCommand"
+                                    CommandParameter="{Binding Id}"
+                                />
+                </b:BehaviorCollection>
+              </b:Interaction.Behaviors>
+            </TextCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ScrollView>
 </ContentPage>

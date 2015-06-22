@@ -54,6 +54,7 @@
     <Compile Include="ViewModels\ArtistsAlbumsViewModel.cs" />
     <Compile Include="ViewModels\DevicesListViewModel.cs" />
     <Compile Include="ViewModels\DeviceViewModel.cs" />
+    <Compile Include="ViewModels\PollViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\TrackPlayerViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

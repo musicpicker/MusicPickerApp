@@ -10,6 +10,7 @@ namespace MusicPickerApp.Views {
     public partial class PollPage : ContentPage {
         public PollPage() {
             InitializeComponent();
+            this.BindingContext = viewModel;
         }
     }
 }
