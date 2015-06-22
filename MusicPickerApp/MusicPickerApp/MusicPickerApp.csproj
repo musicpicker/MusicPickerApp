@@ -43,10 +43,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Toolkit\ImageResourceExtension.cs" />
-    <Compile Include="Toolkit\ObjectToListConverter.cs" />
     <Compile Include="ViewModels\AlbumTracksViewModel.cs" />
     <Compile Include="ViewModels\AllAlbumsViewModel.cs" />
     <Compile Include="ViewModels\AllArtistsViewModel.cs" />

@@ -7,9 +7,11 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
+    /// <summary>
+    /// ViewModel of the AddDevicePage, adds a device from the form entry and send it to the server
+    /// </summary>
     public class AddDeviceViewModel : ViewModelBase{
         private string deviceName;
-        private string devicePwd;
         
         public AddDeviceViewModel() {
             AddNewDeviceCommand = new Command(execute: () => {

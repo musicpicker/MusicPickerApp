@@ -9,6 +9,9 @@ using MusicPickerApp.Views;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
+    /// <summary>
+    /// ViewModel use to display all the albums located on the Device
+    /// </summary>
     public class AllAlbumsViewModel : ViewModelBase {
        
         public List<Album> AlbumsList { get; private set; }

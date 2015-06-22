@@ -12,8 +12,11 @@ using MusicPickerApp.Api.Util;
 using Microsoft.AspNet.SignalR.Client;
 
 namespace MusicPickerApp.Api {
+    /// <summary>
+    /// Singleton class which regroups every call to the server the application need to do (HttpRequests and WebSockets)
+    ///</summary>
     public sealed class ApiClient {
-        private static readonly string SERVER_URL = "http://localhost:50559";
+        private static readonly string SERVER_URL = "http://musicpicker.cloudapp.net";
         private static readonly ApiClient instance = new ApiClient();
         private static readonly Uri endpoint = new Uri(SERVER_URL);
         private string bearer;

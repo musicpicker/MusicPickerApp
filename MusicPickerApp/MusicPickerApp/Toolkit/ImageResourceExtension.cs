@@ -8,6 +8,9 @@ using Xamarin.Forms.Xaml;
 
 namespace MusicPickerApp.Toolkit {
     [ContentProperty("Source")]
+    /// <summary>
+    /// MarkExtension to easily add an Image from a local Source on a XAML Page
+    /// </summary>
     public class ImageResourceExtension : IMarkupExtension {
         public string Source {
             get;

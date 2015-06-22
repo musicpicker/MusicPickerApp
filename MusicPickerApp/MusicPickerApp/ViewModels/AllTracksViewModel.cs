@@ -9,11 +9,12 @@ using MusicPickerApp.Views;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
+    /// <summary>
+    /// ViewModel use to display all the tracks located on the Device
+    /// </summary>
     public class AllTracksViewModel : ViewModelBase {
 
         public List<Track> TracksList { get; private set; }
-         
-
         public AllTracksViewModel() {
             TracksList = client.DeviceGetTracks(client.CurrentDevice.Id);
 

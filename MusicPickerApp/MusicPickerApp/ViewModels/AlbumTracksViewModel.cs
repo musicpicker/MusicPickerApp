@@ -9,12 +9,19 @@ using MusicPickerApp.Views;
 using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
+    /// <summary>
+    /// ViewModel of the AlbumTracksView Which display tracks according to a specific album
+    /// </summary>
     class AlbumTracksViewModel : ViewModelBase {
         public Api.Util.Device Device { get; private set; }
 
         public string ArtistName { get; private set; }
         public string AlbumName { get; private set; }
         public List<Track> AlbumTracks { get; private set; }
+
+        /// <summary>
+        /// Constructor also checks if CurrentArtist is null and if it is we can retrieve it with his ID which Album provides
+        /// </summary>
         public AlbumTracksViewModel() {
 
             AlbumName = client.CurrentAlbum.Name;
