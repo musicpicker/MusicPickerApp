@@ -21,6 +21,7 @@ namespace MusicPickerApp.Api
         public Device CurrentDevice { get; set; }
         public Artist CurrentArtist { get; set; }
         public Album CurrentAlbum { get; set; }
+        public Track CurrentTrack { get; set; }
 
         public static ApiClient Instance {
             get {
@@ -28,7 +29,8 @@ namespace MusicPickerApp.Api
             }
         }
 
-        private ApiClient(){ }
+        private ApiClient(){
+        }
 
         public bool SignUp(string username, string password)
         {

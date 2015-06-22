@@ -13,33 +13,45 @@ namespace MusicPickerApp.ViewModels {
     public class DeviceViewModel : ViewModelBase {
         public Api.Util.Device Device { get; set; }
 
-        public List<Artist> ArtistsList { get; set; }
-        public List<Album> AlbumsList { get; set; }
-        public List<Track> TracksList { get; set; }
+        private AllArtistsViewModel allArtistsViewModel;
+        private AllAlbumsViewModel allAlbumsViewModel;
+        private AllTracksViewModel allTracksViewModel;
 
-        
+
         public DeviceViewModel() {
-            Device = client.CurrentDevice;
-            AlbumsList = client.DeviceGetAlbums(Device.Id);
-            ArtistsList = client.DeviceGetArtists(Device.Id);
-            TracksList = client.DeviceGetTracks(Device.Id);
-            
+            client.LogIn("Tom", "isen59");
+            Device = client.CurrentDevice = client.DevicesGet()[0];
+            //Device = client.CurrentDevice;
             DisplayPollPageCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new PollPage());
             });
-            SelectArtistCommand = new Command<string>(execute: (string artistName) => {
+            SelectArtistCommand = new Command<int>(execute: (int artistId) => {
+                client.CurrentArtist = allArtistsViewModel.ArtistsList[artistId - 1];
                 App.Navigation.PushAsync(new ArtistAlbumsPage());
             });
-            SelectAlbumCommand = new Command<string>(execute: (string albumName) => {
+
+            SelectAlbumCommand = new Command<int>(execute: (int albumId) => {
+                client.CurrentAlbum = allAlbumsViewModel.AlbumsList[albumId - 1];
                 App.Navigation.PushAsync(new AlbumTracksPage());
             });
-            SelectTrackCommand = new Command<string>(execute: (string trackName) => {
+            SelectTrackCommand = new Command<int>(execute: (int trackId) => {
+                client.CurrentTrack = allTracksViewModel.TracksList[trackId - 1];
                 App.Navigation.PushAsync(new TrackPlayerPage());
             });
 
 
         }
+
+        public void AddSubViewModel(AllArtistsViewModel artistsViewModel, AllAlbumsViewModel albumsViewModel, AllTracksViewModel tracksViewModel) {
+            allAlbumsViewModel = albumsViewModel;
+            allArtistsViewModel = artistsViewModel;
+            allTracksViewModel = tracksViewModel;
+        }
         public ICommand DisplayPollPageCommand {
+            get;
+            private set;
+        }
+        public ICommand SelectArtistCommand {
             get;
             private set;
         }
@@ -48,10 +60,6 @@ namespace MusicPickerApp.ViewModels {
             private set;
         }
 
-        public ICommand SelectArtistCommand {
-            get;
-            private set;
-        }
         public ICommand SelectTrackCommand {
             get;
             private set;

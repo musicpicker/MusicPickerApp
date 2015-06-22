@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace MusicPickerApp.ViewModels {
     public class DevicesListViewModel : ViewModelBase {
-        public List<MusicPickerApp.Api.Util.Device> DeviceList { get; set; }
+        public List<MusicPickerApp.Api.Util.Device> DeviceList { get; private set; }
 
         public DevicesListViewModel() {
             DeviceList = client.DevicesGet();

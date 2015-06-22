@@ -12,17 +12,17 @@
              Style="{StaticResource defaultStyle}">
   <ContentPage.Resources>
     <ResourceDictionary>
-      <viewModels:DeviceViewModel x:Key="viewModel"/>
+      <viewModels:AllArtistsViewModel x:Key="viewModel" x:Name="viewModel"/>
     </ResourceDictionary>
   </ContentPage.Resources>
   <ListView x:Name="ArtistsList"
             BindingContext="{StaticResource viewModel}"
-            ItemsSource="{Binding ArtistsList}"
+            ItemsSource="{Binding ArtistsList, Mode=OneWay}"
             BackgroundColor="#2D2D2D">
 
     <ListView.ItemTemplate>
       <DataTemplate>
-        <TextCell Text="{Binding Name}"
+        <TextCell Text="{Binding Name, Mode=OneWay}"
                   TextColor="White"
                   DetailColor="#B2B2B2">
           <b:Interaction.Behaviors>
@@ -30,7 +30,7 @@
               <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
                                 EventName="Tapped"
                                 CommandName="SelectArtistCommand"
-                                CommandParameter="{Binding Name}"
+                                CommandParameter="{Binding Id}"
                                 />
             </b:BehaviorCollection>
           </b:Interaction.Behaviors>

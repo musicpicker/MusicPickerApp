@@ -12,7 +12,7 @@
              Style="{StaticResource defaultStyle}">
   <ContentPage.Resources>
     <ResourceDictionary>
-      <viewModels:DeviceViewModel x:Key="viewModel"/>
+      <viewModels:AllAlbumsViewModel x:Key="viewModel" x:Name="viewModel"/>
     </ResourceDictionary>
   </ContentPage.Resources>
   <ListView x:Name="AlbumsList"
@@ -30,7 +30,7 @@
               <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
                                 EventName="Tapped"
                                 CommandName="SelectAlbumCommand"
-                                CommandParameter="{Binding Name}"
+                                CommandParameter="{Binding Id}"
                                 />
             </b:BehaviorCollection>
           </b:Interaction.Behaviors>

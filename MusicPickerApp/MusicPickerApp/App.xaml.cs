@@ -25,7 +25,7 @@ namespace MusicPickerApp
                         }*/
                 rootPage = new NavigationPage(); //(new DevicesListPage(DevicesView))
             } else {
-                rootPage = new NavigationPage(new LoginPage());
+                rootPage = new NavigationPage(new DevicePage());
             }
            
             //ToolBar For Android

@@ -11,5 +11,8 @@ namespace MusicPickerApp.Views.TabbedViews {
         public ArtistsPage() {
             InitializeComponent();
         }
+        public AllArtistsViewModel getViewModel() {
+            return viewModel;
+        }
     }
 }

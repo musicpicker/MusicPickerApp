@@ -47,10 +47,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Toolkit\ImageResourceExtension.cs" />
     <Compile Include="Toolkit\ObjectToListConverter.cs" />
+    <Compile Include="ViewModels\AllAlbumsViewModel.cs" />
+    <Compile Include="ViewModels\AllArtistsViewModel.cs" />
+    <Compile Include="ViewModels\AllTracksViewModel.cs" />
     <Compile Include="ViewModels\ArtistsAlbumsViewModel.cs" />
     <Compile Include="ViewModels\DevicesListViewModel.cs" />
     <Compile Include="ViewModels\DeviceViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
+    <Compile Include="ViewModels\TrackPlayerViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\AddDeviceViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

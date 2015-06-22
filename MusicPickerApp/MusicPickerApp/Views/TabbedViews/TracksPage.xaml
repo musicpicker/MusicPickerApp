@@ -12,7 +12,7 @@
              Style="{StaticResource defaultStyle}">
   <ContentPage.Resources>
     <ResourceDictionary>
-      <viewModels:DeviceViewModel x:Key="viewModel"/>
+      <viewModels:AllTracksViewModel x:Key="viewModel" x:Name="viewModel"/>
     </ResourceDictionary>
   </ContentPage.Resources>
   <ListView x:Name="TracksList"
@@ -30,7 +30,7 @@
               <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
                                 EventName="Tapped"
                                 CommandName="SelectTrackCommand"
-                                CommandParameter="{Binding Name}"
+                                CommandParameter="{Binding Id}"
                                 />
             </b:BehaviorCollection>
           </b:Interaction.Behaviors>

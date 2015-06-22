@@ -1,6 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MusicPickerApp.Views.TrackPlayerPage">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+             xmlns:local="clr-namespace:MusicPickerApp;assembly=MusicPickerApp"
+             xmlns:b="clr-namespace:Xamarin.Behaviors;assembly=Xamarin.Behaviors"
+             xmlns:views="clr-namespace:MusicPickerApp.Views;assembly=MusicPickerApp"
+             xmlns:viewModels="clr-namespace:MusicPickerApp.ViewModels;assembly=MusicPickerApp"
+             xmlns:toolkit="clr-namespace:MusicPickerApp.Toolkit;assembly=MusicPickerApp"
+             x:Class="MusicPickerApp.Views.TrackPlayerPage"
+             x:Name ="MainPage"
+             Title="{Binding DeviceName}"
+             Style="{StaticResource defaultStyle}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <viewModels:TrackPlayerViewModel x:Key="viewModel" x:Name="viewModel"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ToolbarItem Text="Poll" Order="Primary" BindingContext="{StaticResource viewModel}"
+               Command="{Binding DisplayPollPageCommand}">
+  </ToolbarItem>
+  <StackLayout>
+
+  </StackLayout>
 </ContentPage>

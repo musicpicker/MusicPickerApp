@@ -3,4 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MusicPickerApp.Views.AlbumTracksPage">
   <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <ToolbarItem Text="Poll" Order="Primary" BindingContext="{StaticResource viewModel}"
+               Command="{Binding DisplayPollPageCommand}">
+  </ToolbarItem>
 </ContentPage>
