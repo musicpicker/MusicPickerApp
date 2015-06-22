@@ -9,7 +9,7 @@
              Title="Add a new Device">
   <ContentPage.Resources>
     <ResourceDictionary>
-      <viewModels:AddDeviceViewModel x:Key="viewModel"/>
+      <viewModels:AddDeviceViewModel x:Key="viewModel" x:Name="viewModel"/>
       <Style x:Key="formStyle" TargetType="StackLayout">
         <Setter Property="Padding">
           <Setter.Value>
@@ -28,7 +28,6 @@
     <StackLayout Style="{StaticResource formStyle}"
      BindingContext="{StaticResource viewModel}">
       <Entry x:Name="nameEntry" Placeholder="Device Name" Keyboard="Default" Text="{Binding DeviceName}" />
-      <Entry x:Name="pwdEntry" Placeholder="Password" Keyboard="Default" IsPassword="True" Text="{Binding DevicePassword}" />
       <Button x:Name="AddDeviceButton"
               Text="Add Device"
               VerticalOptions="Center"

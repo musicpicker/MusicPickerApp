@@ -29,6 +29,32 @@
         <TextCell Text="{Binding Name}" Detail="Owner"
                   TextColor="White"
                   DetailColor="#B2B2B2">
+          <TextCell.ContextActions >
+            <MenuItem Text="Select" >
+              <b:Interaction.Behaviors>
+                <b:BehaviorCollection>
+                  <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
+                                    EventName="Clicked"
+                                    CommandName="SelectDeviceCommand"
+                                    CommandParameter="{Binding Name}"
+                                />
+                </b:BehaviorCollection>
+              </b:Interaction.Behaviors>
+            </MenuItem>
+
+            <MenuItem Text="Delete" >
+              <b:Interaction.Behaviors>
+                <b:BehaviorCollection>
+                  <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
+                                    EventName="Clicked"
+                                    CommandName="DeleteDeviceCommand"
+                                    CommandParameter="{Binding Id}"
+                                />
+                </b:BehaviorCollection>
+              </b:Interaction.Behaviors>
+            </MenuItem>
+          </TextCell.ContextActions>
+
           <b:Interaction.Behaviors>
             <b:BehaviorCollection>
               <b:EventToCommand CommandNameContext="{b:RelativeContext MainPage}"
@@ -39,6 +65,7 @@
             </b:BehaviorCollection>
           </b:Interaction.Behaviors>
         </TextCell>
+
       </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>

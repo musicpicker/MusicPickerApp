@@ -9,6 +9,8 @@ namespace MusicPickerApp.Views {
     public partial class AddDevicePage : ContentPage {
         public AddDevicePage() {
             InitializeComponent();
+            
         }
+        
     }
 }

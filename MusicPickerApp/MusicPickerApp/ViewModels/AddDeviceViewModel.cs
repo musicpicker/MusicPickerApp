@@ -16,9 +16,11 @@ namespace MusicPickerApp.ViewModels {
                 //Add new Device with name and pwd
 
                 if (client.DeviceAdd(deviceName) !=-1) {
-
+                    App.Current.MainPage.DisplayAlert("Sucess", "A new Device has been added to your list !", "Ok");
+                    App.Navigation.PopAsync();
+                    
                 }
-                DeviceName = DevicePassword = "";
+                DeviceName = "";
             });
 
         }
@@ -30,14 +32,7 @@ namespace MusicPickerApp.ViewModels {
                 SetProperty(ref deviceName , value);
             }
         }
-        public string DevicePassword {
-            get{
-                return devicePwd;
-            }
-            set {
-                SetProperty(ref devicePwd, value);
-            }
-        }
+        
 
         public ICommand AddNewDeviceCommand {
             get;

@@ -24,6 +24,10 @@ namespace MusicPickerApp.ViewModels {
                 App.Navigation.PushAsync(new DevicePage());
 
             });
+            DeleteDeviceCommand = new Command<int>(execute: (int deviceIdToDelete) => {
+                client.DeviceDelete(deviceIdToDelete);
+                DeviceList = client.DevicesGet();
+            });
 
         }
         public ICommand AddDevicePageCommand {
@@ -31,6 +35,10 @@ namespace MusicPickerApp.ViewModels {
             private set;
         }
         public ICommand SelectDeviceCommand {
+            get;
+            private set;
+        }
+        public ICommand DeleteDeviceCommand {
             get;
             private set;
         }

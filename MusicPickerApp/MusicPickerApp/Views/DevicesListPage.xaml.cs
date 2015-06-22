@@ -13,8 +13,8 @@ namespace MusicPickerApp.Views {
 
             InitializeComponent();
             this.BindingContext = new DevicesListViewModel();
-            
-            
+            MenuItem m = new MenuItem();
         }
+        
     }
 }

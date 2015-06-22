@@ -22,7 +22,8 @@
 
     <ListView.ItemTemplate>
       <DataTemplate>
-        <TextCell Text="{Binding Name}" 
+        <ImageCell ImageSource="{Binding Artwork}"
+                   Text="{Binding Name}" 
                   TextColor="White"
                   DetailColor="#B2B2B2">
           <b:Interaction.Behaviors>
@@ -34,7 +35,7 @@
                                 />
             </b:BehaviorCollection>
           </b:Interaction.Behaviors>
-        </TextCell>
+        </ImageCell>
       </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>
