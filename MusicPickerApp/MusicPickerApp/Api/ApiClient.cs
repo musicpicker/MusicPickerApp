@@ -14,6 +14,7 @@ using Microsoft.AspNet.SignalR.Client;
 namespace MusicPickerApp.Api {
     /// <summary>
     /// Singleton class which regroups every call to the server the application need to do (HttpRequests and WebSockets)
+    /// The server url is the localhost if you want deploy the server on your computer if not you can find the address of our server by mail
     ///</summary>
     public sealed class ApiClient {
         private static readonly string SERVER_URL = "http://localhost:50559";
