@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using MusicPickerApp.Api.Util;
 using Microsoft.AspNet.SignalR.Client;
+using System.ServiceModel;
 
 namespace MusicPickerApp.Api {
     /// <summary>
@@ -17,7 +18,7 @@ namespace MusicPickerApp.Api {
     /// The server url is the localhost if you want deploy the server on your computer if not you can find the address of our server by mail
     ///</summary>
     public sealed class ApiClient {
-        private static readonly string SERVER_URL = "http://localhost:50559";
+        private static readonly string SERVER_URL = "http://musicpicker.cloudapp.net";
         private static readonly ApiClient instance = new ApiClient();
         private static readonly Uri endpoint = new Uri(SERVER_URL);
         private string bearer;
@@ -96,7 +97,7 @@ namespace MusicPickerApp.Api {
                 DefaultRequestHeaders = { Authorization = new AuthenticationHeaderValue("Bearer", this.bearer) }
             }).PostAsync(uri, content).Result;
             if (!result.IsSuccessStatusCode) {
-                return -1; // Exception @TODO
+                throw new Exception("Can't connect to the server please retry");
             }
 
             Dictionary<string, string> data =
@@ -144,7 +145,7 @@ namespace MusicPickerApp.Api {
             }).GetAsync(uri).Result;
 
             if (!result.IsSuccessStatusCode) {
-                return null;  
+                throw new Exception("Can't connect to the server please retry");
             }
 
             return JsonConvert.DeserializeObject<List<Device>>(result.Content.ReadAsStringAsync().Result);
@@ -157,7 +158,7 @@ namespace MusicPickerApp.Api {
             }).GetAsync(uri).Result;
 
             if (!result.IsSuccessStatusCode) {
-                return -1;  
+                throw new Exception("Can't connect to the server please retry");
             }
 
             return JsonConvert.DeserializeObject<Device>(result.Content.ReadAsStringAsync().Result).Id;
@@ -171,7 +172,7 @@ namespace MusicPickerApp.Api {
             }).GetAsync(uri).Result;
 
             if (!result.IsSuccessStatusCode) {
-                return null;  
+                throw new Exception("Can't connect to the server please retry");
             }
 
             return JsonConvert.DeserializeObject<Album>(result.Content.ReadAsStringAsync().Result);
@@ -185,7 +186,7 @@ namespace MusicPickerApp.Api {
             }).GetAsync(uri).Result;
 
             if (!result.IsSuccessStatusCode) {
-                return null;  
+                return null;
             }
 
             return JsonConvert.DeserializeObject<List<Album>>(result.Content.ReadAsStringAsync().Result);
@@ -199,7 +200,7 @@ namespace MusicPickerApp.Api {
             }).GetAsync(uri).Result;
 
             if (!result.IsSuccessStatusCode) {
-                return null;  
+                throw new Exception("Can't connect to the server please retry");
             }
 
             return JsonConvert.DeserializeObject<List<Album>>(result.Content.ReadAsStringAsync().Result);
@@ -212,7 +213,7 @@ namespace MusicPickerApp.Api {
             }).GetAsync(uri).Result;
 
             if (!result.IsSuccessStatusCode) {
-                return null;  
+                throw new Exception("Can't connect to the server please retry");
             }
 
             return JsonConvert.DeserializeObject<List<Track>>(result.Content.ReadAsStringAsync().Result);
@@ -225,7 +226,7 @@ namespace MusicPickerApp.Api {
             }).GetAsync(uri).Result;
 
             if (!result.IsSuccessStatusCode) {
-                return null;  
+                throw new Exception("Can't connect to the server please retry");
             }
 
             return JsonConvert.DeserializeObject<Track>(result.Content.ReadAsStringAsync().Result);
@@ -238,7 +239,7 @@ namespace MusicPickerApp.Api {
             }).GetAsync(uri).Result;
 
             if (!result.IsSuccessStatusCode) {
-                return null;  
+                throw new Exception("Can't connect to the server please retry");
             }
 
             return JsonConvert.DeserializeObject<List<Track>>(result.Content.ReadAsStringAsync().Result);
@@ -251,7 +252,7 @@ namespace MusicPickerApp.Api {
             }).GetAsync(uri).Result;
 
             if (!result.IsSuccessStatusCode) {
-                return null;  
+                throw new Exception("Can't connect to the server please retry");
             }
 
             return JsonConvert.DeserializeObject<Artist>(result.Content.ReadAsStringAsync().Result);
@@ -264,24 +265,51 @@ namespace MusicPickerApp.Api {
             }).GetAsync(uri).Result;
 
             if (!result.IsSuccessStatusCode) {
-                return null;  
+                throw new Exception("Can't connect to the server please retry");
             }
 
             return JsonConvert.DeserializeObject<List<Artist>>(result.Content.ReadAsStringAsync().Result);
         }
-        public async void connectToHub() {
+        public async void ConnectToHub() {
 
             hubConnection = new HubConnection("http://musicpicker.cloudapp.net");
             hubProxy = hubConnection.CreateHubProxy("MusicHub");
             hubConnection.Headers.Add("Authorization", "Bearer " + bearer);
             await hubConnection.Start();
-            await hubProxy.Invoke("RegisterDevice", CurrentDevice.Id);
-            
+            await hubProxy.Invoke("RegisterClient", CurrentDevice.Id);
+
         }
-        public async void playTrack() {
-            object[] args = { CurrentDevice.Id, CurrentTrack.Id};
-            //await hubProxy.Invoke('Queue', args);
-            await hubProxy.Invoke("Play", CurrentDevice.Id);
+        public void LogOut() {
+            bearer = null;
+            CurrentDevice = null;
+            CurrentArtist = null;
+            CurrentAlbum = null;
+            CurrentTrack = null;
+        }
+        public async void PlayTrack() {
+
+            await hubProxy.Invoke("Queue", CurrentDevice.Id, new int[] { CurrentTrack.Id });
+
+        }
+        public async void PauseTrack() {
+
+            await hubProxy.Invoke("Pause", CurrentDevice.Id);
+
+        }
+        public async void NextTrack() {
+
+            await hubProxy.Invoke("Next", CurrentDevice.Id);
+
+        }
+        public async void SubmitVoteOptions(int[] trackIds) {
+
+            await hubProxy.Invoke("Next", CurrentDevice.Id, trackIds);
+
+        }
+        public async void submitVote(int val) {
+
+            await hubProxy.Invoke("Next", CurrentDevice.Id,val);
+
         }
     }
 }

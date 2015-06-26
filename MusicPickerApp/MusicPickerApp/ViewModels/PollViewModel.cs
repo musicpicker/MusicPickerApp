@@ -19,10 +19,13 @@ namespace MusicPickerApp.ViewModels {
         public bool IsOngoingPoll { get; private set; }
         public PollViewModel() {
 
-
-            DeviceName = client.CurrentDevice.Name;
-            //PollList = client.DeviceGetVotes();
-
+            try {
+                DeviceName = client.CurrentDevice.Name;
+                //PollList = client.DeviceGetVotes();
+            } catch (Exception ex) {
+                App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                App.Navigation.PopAsync();
+            }
 
             VoteForTrackCommand = new Command<int>(execute: (int trackId) => {
                 //client.deviceAddVote(trackId);

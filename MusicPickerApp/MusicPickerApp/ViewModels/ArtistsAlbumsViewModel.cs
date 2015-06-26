@@ -19,18 +19,25 @@ namespace MusicPickerApp.ViewModels {
         public List<Album> ArtistAlbums { get; private set; }
         public ArtistsAlbumsViewModel() {
 
+            try {
+                Device = client.CurrentDevice;
+                Artist = client.CurrentArtist;
+                ArtistName = Artist.Name;
+                ArtistAlbums = client.DeviceGetAlbumsFromArtist(Device.Id, Artist.Id);
 
-            Device = client.CurrentDevice;
-            Artist = client.CurrentArtist;
-            ArtistName = Artist.Name;
-            ArtistAlbums = client.DeviceGetAlbumsFromArtist(Device.Id, Artist.Id);
-
-
+            } catch (Exception ex) {
+                App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                
+            }
             SelectAlbumCommand = new Command<string>(execute: (string albumName) => {
-                client.CurrentAlbum = (from item in ArtistAlbums
-                                       where item.Name == albumName
-                                       select item).First();
-                App.Navigation.PushAsync(new AlbumTracksPage());
+                try {
+                    client.CurrentAlbum = (from item in ArtistAlbums
+                                           where item.Name == albumName
+                                           select item).First();
+                    App.Navigation.PushAsync(new AlbumTracksPage());
+                } catch (Exception ex) {
+                    App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                }
             });
             DisplayPollPageCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new PollPage());

@@ -17,12 +17,19 @@ namespace MusicPickerApp.ViewModels {
             AddNewDeviceCommand = new Command(execute: () => {
                 //Add new Device with name and pwd
 
-                if (client.DeviceAdd(deviceName) !=-1) {
-                    App.Current.MainPage.DisplayAlert("Sucess", "A new Device has been added to your list !", "Ok");
+                try {
+                    if (client.DeviceAdd(deviceName) != -1) {
+                        App.Current.MainPage.DisplayAlert("Sucess", "A new Device has been added to your list ! Please reload the App", "Ok");
+                        
+
+                    }
+                } catch (Exception ex){
+                    App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                } finally {
+                    DeviceName = "";
                     App.Navigation.PopAsync();
-                    
                 }
-                DeviceName = "";
+                
             });
 
         }

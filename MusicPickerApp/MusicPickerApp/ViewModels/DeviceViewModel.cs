@@ -22,32 +22,49 @@ namespace MusicPickerApp.ViewModels {
 
 
         public DeviceViewModel() {
+            try {
+                Device = client.CurrentDevice;
 
-            Device = client.CurrentDevice;
-
-            client.connectToHub();
+                client.ConnectToHub();
+            } catch (Exception ex) {
+                App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                App.Navigation.PopAsync();
+            }
 
             DisplayPollPageCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new PollPage());
             });
             SelectArtistCommand = new Command<string>(execute: (string artistName) => {
-                client.CurrentArtist = (from item in allArtistsViewModel.ArtistsList
-                                        where item.Name == artistName
-                                        select item).First();
-                App.Navigation.PushAsync(new ArtistAlbumsPage());
+                try {
+                    client.CurrentArtist = (from item in allArtistsViewModel.ArtistsList
+                                            where item.Name == artistName
+                                            select item).First();
+                    App.Navigation.PushAsync(new ArtistAlbumsPage());
+                } catch (Exception ex) {
+                    App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                }
+                
             });
 
             SelectAlbumCommand = new Command<string>(execute: (string albumName) => {
-                client.CurrentAlbum = (from item in allAlbumsViewModel.AlbumsList
-                                       where item.Name == albumName
-                                       select item).First();
-                App.Navigation.PushAsync(new AlbumTracksPage());
+                try {
+                    client.CurrentAlbum = (from item in allAlbumsViewModel.AlbumsList
+                                           where item.Name == albumName
+                                           select item).First();
+                    App.Navigation.PushAsync(new AlbumTracksPage());
+                } catch (Exception ex) {
+                    App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                }
             });
             SelectTrackCommand = new Command<string>(execute: (string trackName) => {
-                client.CurrentTrack = (from item in allTracksViewModel.TracksList
-                                       where item.Name == trackName
-                                       select item).First();
-                App.Navigation.PushAsync(new TrackPlayerPage());
+                try {
+                    client.CurrentTrack = (from item in allTracksViewModel.TracksList
+                                           where item.Name == trackName
+                                           select item).First();
+                    App.Navigation.PushAsync(new TrackPlayerPage());
+                } catch (Exception ex) {
+                    App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                }
             });
 
 

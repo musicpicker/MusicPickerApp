@@ -16,7 +16,10 @@ namespace MusicPickerApp.ViewModels {
 
         public List<Track> TracksList { get; private set; }
         public AllTracksViewModel() {
-            TracksList = client.DeviceGetTracks(client.CurrentDevice.Id);
+            try { TracksList = client.DeviceGetTracks(client.CurrentDevice.Id); } catch (Exception ex) {
+                App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                App.Navigation.PopAsync();
+            }
 
         }
     }

@@ -22,41 +22,78 @@ namespace MusicPickerApp.ViewModels {
         public string DeviceName { get; private set; }
         public string Artwork { get; private set; }
 
+        private bool isPlaying = false;
+        public bool IsPlaying { get{return isPlaying;} 
+            private set{
+            isPlaying = value;
+            IsPlayingText = isPlaying ? "Pause" : "Play";
+        } }
+
+        private string isPlayingText = "Play";
+        public string IsPlayingText {
+            get {
+                return isPlayingText;
+            }
+            private set {
+                SetProperty(ref isPlayingText, value);
+            }
+        }
+
+
+
         public TrackPlayerViewModel() {
+            IsPlayingText = "Play";
+            try {
+                TrackName = client.CurrentTrack.Name;
+                Album album = client.DevicesGetAlbum(client.CurrentTrack.AlbumId);
+                if (client.CurrentAlbum == null || album.Name != client.CurrentAlbum.Name) {
+                    client.CurrentAlbum = album;
+                }
+                AlbumYear = "(" + client.CurrentAlbum.Year + ")";
+                AlbumName = client.CurrentAlbum.Name;
 
-            TrackName = client.CurrentTrack.Name;
-            Album album = client.DevicesGetAlbum(client.CurrentTrack.AlbumId);
-            if (client.CurrentAlbum == null || album.Name != client.CurrentAlbum.Name) {
-                client.CurrentAlbum = album;
+                Artist artist = client.DevicesGetArtist(client.CurrentAlbum.ArtistId);
+                if (ArtistName == null || artist.Name != client.CurrentArtist.Name) {
+                    client.CurrentArtist = artist;
+                }
+                ArtistName = client.CurrentArtist.Name;
+                DeviceName = client.CurrentDevice.Name;
+                AlbumName = client.CurrentAlbum.Name;
+                Artwork = client.CurrentAlbum.Artwork;
+            } catch (Exception ex) {
+                App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                App.Navigation.PopAsync();
             }
-            AlbumYear = "(" + client.CurrentAlbum.Year + ")";
-            AlbumName = client.CurrentAlbum.Name;
-
-            Artist artist = client.DevicesGetArtist(client.CurrentAlbum.ArtistId);
-            if (ArtistName == null || artist.Name != client.CurrentArtist.Name) {
-                client.CurrentArtist = artist;
-            }
-            ArtistName = client.CurrentArtist.Name;
-            DeviceName = client.CurrentDevice.Name;
-            AlbumName = client.CurrentAlbum.Name;
-            Artwork = client.CurrentAlbum.Artwork;
 
             PreviousTrackCommand = new Command(execute: () => {
                 //api.DevicePreviousTrack()
                 //api.playTrack()
             });
             NextTrackCommand = new Command(execute: () => {
-                //api.DeviceNextTrack()
-                //api.playTrack()
+                try { client.NextTrack(); } catch (Exception ex){
+                    App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                }
+                
             });
             PlayResumeCommand = new Command(execute: () => {
-                client.playTrack();
+                try {
+                    if (isPlaying) {
+                        client.PauseTrack();
+                    } else {
+                        client.PlayTrack();
+                    }
+                    IsPlaying = !isPlaying;
+                } catch (Exception ex) {
+                    App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                }
             });
             DisplayPollPageCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new PollPage());
             });
 
         }
+
+        
         public ICommand PreviousTrackCommand {
             get;
             private set;

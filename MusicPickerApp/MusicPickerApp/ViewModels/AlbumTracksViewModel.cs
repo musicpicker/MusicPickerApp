@@ -24,19 +24,30 @@ namespace MusicPickerApp.ViewModels {
         /// </summary>
         public AlbumTracksViewModel() {
 
-            AlbumName = client.CurrentAlbum.Name;
-            AlbumTracks = client.DeviceGetTracksFromAlbum(client.CurrentDevice.Id, client.CurrentAlbum.Id);
-            Artist artist = client.DevicesGetArtist(client.CurrentAlbum.ArtistId);
-            if (ArtistName == null || artist.Name != client.CurrentArtist.Name) {
-                client.CurrentArtist = artist;
+            try {
+                AlbumName = client.CurrentAlbum.Name;
+                AlbumTracks = client.DeviceGetTracksFromAlbum(client.CurrentDevice.Id, client.CurrentAlbum.Id);
+                Artist artist = client.DevicesGetArtist(client.CurrentAlbum.ArtistId);
+                if (ArtistName == null || artist.Name != client.CurrentArtist.Name) {
+                    client.CurrentArtist = artist;
+                }
+                ArtistName = client.CurrentArtist.Name;
+            } catch (Exception ex) {
+                App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                App.Navigation.PopAsync();
             }
-            ArtistName = client.CurrentArtist.Name;
+            
 
             SelectTrackCommand = new Command<string>(execute: (string trackName) => {
-                client.CurrentTrack = (from item in AlbumTracks
-                                       where item.Name == trackName
-                                       select item).First();
-                App.Navigation.PushAsync(new TrackPlayerPage());
+                try {
+                    client.CurrentTrack = (from item in AlbumTracks
+                                           where item.Name == trackName
+                                           select item).First();
+                    App.Navigation.PushAsync(new TrackPlayerPage());
+                } catch (Exception ex) {
+                    App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                    
+                }
             });
             DisplayPollPageCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new PollPage());

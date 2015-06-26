@@ -17,7 +17,12 @@ namespace MusicPickerApp.ViewModels {
         public List<Artist> ArtistsList { get; private set; }
 
         public AllArtistsViewModel() {
-            ArtistsList = client.DeviceGetArtists(client.CurrentDevice.Id);
+            try {
+                ArtistsList = client.DeviceGetArtists(client.CurrentDevice.Id);
+            } catch (Exception ex) {
+                App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                App.Navigation.PopAsync();
+            }
 
 
         }

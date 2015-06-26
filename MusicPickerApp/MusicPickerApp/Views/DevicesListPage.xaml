@@ -18,6 +18,8 @@
   <ContentPage.ToolbarItems >
     <ToolbarItem Text="New Device" Order="Primary" BindingContext="{StaticResource viewModel}"
                  Command="{Binding AddDevicePageCommand}"/>
+    <ToolbarItem Text="Logout" Order="Primary" BindingContext="{StaticResource viewModel}"
+                 Command="{Binding LogOutCommand}"/>
   </ContentPage.ToolbarItems>
   <ListView x:Name="DevicesList"
             BindingContext="{StaticResource viewModel}"

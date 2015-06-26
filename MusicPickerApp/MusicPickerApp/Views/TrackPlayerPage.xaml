@@ -60,7 +60,7 @@
       </StackLayout>
       <StackLayout Orientation="Horizontal" Padding="0,20,0,20" BindingContext="{StaticResource viewModel}">
         <Button x:Name="backward" Text="Back" FontSize="Medium" HorizontalOptions="StartAndExpand" Command="{Binding PreviousTrackCommand}" />
-        <Button x:Name="playpause" Text="Play/Resume" FontSize="Medium" HorizontalOptions="CenterAndExpand" Command="{Binding PlayResumeCommand}"/>
+        <Button x:Name="playpause" Text="{Binding IsPlayingText}" FontSize="Medium" HorizontalOptions="CenterAndExpand" Command="{Binding PlayResumeCommand}"/>
         <Button x:Name="forward" Text="Next" FontSize="Medium" HorizontalOptions="EndAndExpand" Command="{Binding NextTrackCommand}"/>
       </StackLayout>
     </StackLayout>

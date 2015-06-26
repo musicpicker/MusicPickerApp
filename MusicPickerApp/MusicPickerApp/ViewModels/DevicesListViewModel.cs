@@ -15,21 +15,46 @@ namespace MusicPickerApp.ViewModels {
         public List<MusicPickerApp.Api.Util.Device> DeviceList { get; private set; }
 
         public DevicesListViewModel() {
-            DeviceList = client.DevicesGet();
+            try {
+                DeviceList = client.DevicesGet();
+            } catch (Exception ex) {
+                try { 
+                    App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                    App.Navigation.PopAsync();
+                } catch (Exception e){ 
+                    App.Navigation = new NavigationPage(new LoginPage()).Navigation; 
+                }
+                
+            }
             AddDevicePageCommand = new Command(execute: () => {
                 App.Navigation.PushAsync(new AddDevicePage());
+
             });
             SelectDeviceCommand = new Command<string>(execute: (string deviceName) => {
-               client.CurrentDevice = (from item in DeviceList
-                            where item.Name == deviceName
-                            select item).First();
-                
+                try {
+                    client.CurrentDevice = (from item in DeviceList
+                                            where item.Name == deviceName
+                                            select item).First();
+                } catch (Exception ex) {
+                    App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                }
+
                 App.Navigation.PushAsync(new DevicePage());
 
             });
             DeleteDeviceCommand = new Command<int>(execute: (int deviceIdToDelete) => {
-                client.DeviceDelete(deviceIdToDelete);
-                DeviceList = client.DevicesGet();
+                try {
+                    client.DeviceDelete(deviceIdToDelete);
+                    DeviceList = client.DevicesGet();
+                    App.Current.MainPage.DisplayAlert("Sucess", "Your device has been deleted please reload the app", "Ok");
+                } catch (Exception ex) {
+                    App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                }
+            });
+            LogOutCommand = new Command(execute: () => {
+                client.LogOut();
+                App.Current.MainPage = new LoginPage();
+
             });
 
         }
@@ -42,6 +67,10 @@ namespace MusicPickerApp.ViewModels {
             private set;
         }
         public ICommand DeleteDeviceCommand {
+            get;
+            private set;
+        }
+        public ICommand LogOutCommand {
             get;
             private set;
         }

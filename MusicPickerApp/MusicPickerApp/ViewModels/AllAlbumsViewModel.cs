@@ -13,12 +13,15 @@ namespace MusicPickerApp.ViewModels {
     /// ViewModel use to display all the albums located on the Device
     /// </summary>
     public class AllAlbumsViewModel : ViewModelBase {
-       
+
         public List<Album> AlbumsList { get; private set; }
 
 
         public AllAlbumsViewModel() {
-            AlbumsList = client.DeviceGetAlbums(client.CurrentDevice.Id);
+            try { AlbumsList = client.DeviceGetAlbums(client.CurrentDevice.Id); } catch (Exception ex) {
+                App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                App.Navigation.PopAsync();
+            }
 
 
         }
